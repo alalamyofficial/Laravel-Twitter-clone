@@ -84,7 +84,7 @@
         <div class="col-md-6 p-0 pt-3">
           <i class="fa fa-twitter"></i>
           <h3 class="text-center pt-3">Log in to Twitter</h3>
-          <form class="login-form"  method="POST" action="{{ route('login') }}">
+          <form class="login-form" method="POST" action="{{ route('login') }}">
           @csrf
             <div class="mb-3 bg-color">
               <label>Email</label>
@@ -108,7 +108,7 @@
                     @enderror      
 
             </div>
-            <button type="button" class="btn btn-custom btn-lg btn-block mt-3">Log in</button>
+            <button type="submit" class="btn btn-custom btn-lg btn-block mt-3">Log in</button>
             <div class="text-center pt-3 pb-3">
               <a href="#" class="">Forgotten password?</a> . 
               <a href="{{ route('register') }}" class="">Sign up for Twitter</a>

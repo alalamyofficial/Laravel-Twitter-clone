@@ -24,3 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/index', function () {
     return view('public_tweet_panel');
 });
+
+Route::post('tweet/store', 'TweetController@store')->name('tweet.store');
+Route::get('/tweets', 'TweetController@show')->name('tweet.show');

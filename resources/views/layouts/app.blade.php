@@ -74,6 +74,12 @@
             </main>
         </section>
 
+        <script>
+        
+            var name = "{{ Auth::user()->name }}";
+
+        </script>
+
     </div>
 </body>
 </html>

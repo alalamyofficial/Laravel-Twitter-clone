@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAvatarAttribute(){
+
+        return "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png";
+
+    }
 }
