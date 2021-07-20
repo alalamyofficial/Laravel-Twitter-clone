@@ -27,3 +27,9 @@ Route::get('/index', function () {
 
 Route::post('tweet/store', 'TweetController@store')->name('tweet.store');
 Route::get('/tweets', 'TweetController@show')->name('tweet.show');
+
+
+//explorers
+Route::get('/explore', 'ExplorerController@users')->name('explore.show');
+
+Route::post('/profiles/{user}/follow','FollowsController@store')->name('follow');

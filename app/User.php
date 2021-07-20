@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable , Followable;
 
     /**
      * The attributes that are mass assignable.
@@ -40,6 +40,12 @@ class User extends Authenticatable
     public function getAvatarAttribute(){
 
         return "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png";
+
+    }
+
+    public function tweets(){
+
+        return $this->hasMany(Tweet::class)->latest();
 
     }
 }

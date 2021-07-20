@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <tweet></tweet>
+    <tweet :user="{{ Auth::user()}}"></tweet>
 
 
 @endsection    

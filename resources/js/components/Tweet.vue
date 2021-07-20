@@ -50,9 +50,8 @@
 
                     <div>
                         <h5 class="fomt-bold mb-4">
-                            <a href="">
-                                {{ one.name }}
-                            </a>
+                            <a href="" class="pb-2"> {{ user.name }} </a
+                            ><br /><br />
                             <p class="text-sm mb-3">{{ one.body }}</p>
 
                             <div class="flex">
@@ -107,12 +106,15 @@ export default {
         console.log(this.getData());
     },
 
+    props: ["user"],
+
     data() {
         return {
             body: "",
             tweets: [], // you can do all:{} also
             editbody: "",
-            id: ""
+            id: "",
+            user_id: "{{Auth::user()}}"
         };
     },
 

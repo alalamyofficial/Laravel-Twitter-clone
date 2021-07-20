@@ -5,7 +5,7 @@
     </li>
 
     <li>
-        <a class="font-bold text-lg mb-4 block" href="">Explore</a>
+        <a class="font-bold text-lg mb-4 block" href="{{route('explore.show')}}">Explore</a>
     </li>
 
     <li>

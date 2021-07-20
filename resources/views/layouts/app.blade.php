@@ -74,11 +74,11 @@
             </main>
         </section>
 
-        <script>
+        <!-- <script>
         
             var name = "{{ Auth::user()->name }}";
 
-        </script>
+        </script> -->
 
     </div>
 </body>

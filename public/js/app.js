@@ -2043,19 +2043,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log(this.getData());
   },
+  props: ["user"],
   data: function data() {
     return {
       body: "",
       tweets: [],
       // you can do all:{} also
       editbody: "",
-      id: ""
+      id: "",
+      user_id: "{{Auth::user()}}"
     };
   },
   // created() {
@@ -37871,13 +37872,11 @@ var render = function() {
             _vm._v(" "),
             _c("div", [
               _c("h5", { staticClass: "fomt-bold mb-4" }, [
-                _c("a", { attrs: { href: "" } }, [
-                  _vm._v(
-                    "\n                            " +
-                      _vm._s(one.name) +
-                      "\n                        "
-                  )
+                _c("a", { staticClass: "pb-2", attrs: { href: "" } }, [
+                  _vm._v(" " + _vm._s(_vm.user.name) + " ")
                 ]),
+                _c("br"),
+                _c("br"),
                 _vm._v(" "),
                 _c("p", { staticClass: "text-sm mb-3" }, [
                   _vm._v(_vm._s(one.body))

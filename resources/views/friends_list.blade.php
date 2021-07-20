@@ -3,27 +3,30 @@
 
 <ul style="width:300px">
 
-    @foreach(range(1,10) as $index)
-
-    <li class="mb-4">
+    @forelse( auth()->user()->follows as $user )
+    <li class="{{ $loop->last ? '' : 'mb-4' }}">
 
         <div class="flex items-center text-sm">
 
             <a href="">
 
-                <img src="http://lasvegascoder.com/img/tailwindcss-logo.png" alt="" class="rounded-full mr-2" style="width:50px; height:50px">
+                <img src="{{$user->avatar}}" alt="" class="rounded-full mr-2" style="width:50px; height:50px">
             </a>  
 
             <a href="">
 
-                Mud
+                {{$user->name}}
+
             </a>    
 
         </div>
 
         
     </li>
-    @endforeach
 
+    @empty
+        <li>No Friends Yet</li>
+
+    @endforelse
 
 </ul>
