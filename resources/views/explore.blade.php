@@ -4,7 +4,7 @@
 
 <div>
     @foreach ($users as $user)
-        <a href="" class="flex items-center mb-5">
+        <a href="{{route('profile',$user)}}" class="flex items-center mb-5">
             <img src="{{ $user->avatar }}"
                     alt="{{ $user->name }}'s avatar"
                     width="60"

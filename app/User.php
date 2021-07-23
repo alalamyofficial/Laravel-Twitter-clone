@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\User;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','username'
     ];
 
     /**
@@ -48,4 +49,26 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class)->latest();
 
     }
+
+    public function getRouteKeyName(){
+
+        return 'username';
+
+    }
+
+    public function likes(){
+
+        return $this->hasMany(Like::class);
+
+    }
+
+    public function timeline(){
+
+        $friends = $this->follows()->pluck('id');
+
+        return Tweet::whereIn('user_id',$friends)
+        ->orWhere('user_id',$this->id)->latest()->paginate(50);
+
+    }
+
 }

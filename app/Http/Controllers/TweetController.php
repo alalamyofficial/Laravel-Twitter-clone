@@ -14,7 +14,13 @@ class TweetController extends Controller
      */
     public function index()
     {
-        //
+        $tweets = Tweet::latest()->get();
+
+        return  response()->json($tweets,200)->view('tweets.index',[
+
+            'tweets' => auth()->user()->timeline()
+
+        ]);
     }
 
     /**
@@ -64,6 +70,16 @@ class TweetController extends Controller
         $tweets = Tweet::latest()->get();
     
         return response()->json($tweets,200);
+
+        
+        
+        // ->with('tweets',current_user()->timeline());
+
+        // return view('tweets.index',[
+
+        //     'tweets' => auth()->user()->timeline()
+
+        // ]);
     }
 
     /**

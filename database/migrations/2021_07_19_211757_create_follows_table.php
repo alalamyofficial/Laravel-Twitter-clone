@@ -17,8 +17,8 @@ class CreateFollowsTable extends Migration
             $table->id();
 
             // $table->primary(['user_id', 'following_user_id']);
-            $table->unsignedBigInteger('user_id')->primary();
-            $table->unsignedBigInteger('following_user_id')->primary();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('following_user_id');
 
 
             $table->foreign('user_id')

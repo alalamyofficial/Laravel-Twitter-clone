@@ -1,9 +1,13 @@
-<h3 class="font-bold text-xl mb-4">Folowing</h3>
+@extends('layouts.app')
+
+@section('content')
+
+<h3 class="font-bold text-xl mb-4">Followers</h3>
 
 
 <ul style="width:300px">
 
-    @forelse( auth()->user()->follows as $user )
+    @forelse( $followers as $user )
     <li class="{{ $loop->last ? '' : 'mb-4' }}">
 
         <div class="flex items-center text-sm">
@@ -30,3 +34,5 @@
     @endforelse
 
 </ul>
+
+@endsection

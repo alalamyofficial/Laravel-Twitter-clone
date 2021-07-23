@@ -8,6 +8,13 @@ require("./bootstrap");
 
 window.Vue = require("vue");
 
+//moment js
+import moment from "moment";
+// moment().format();
+Vue.filter("timeformat", function(arg) {
+    return moment(arg).format("MMM Do YY");
+});
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

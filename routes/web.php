@@ -19,17 +19,43 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/index', function () {
+Route::get('/home', function () {
     return view('public_tweet_panel');
+})->name('home');
+
+
+
+
+
+
+//profile
+Route::get('/profile/{user}','ProfilesController@show')->name('profile');
+
+//like
+
+
+Route::group(['middleware' => 'auth'], function () {
+    
+    
+    //tweet
+    // Route::get('/tweets','TweetsController@index')->name('home');
+    Route::post('tweet/store', 'TweetController@store')->name('tweet.store');
+    Route::get('/tweets', 'TweetController@show')->name('tweet.show');
+
+    Route::post('/like/store','LikesController@store')->name('like');
+
+    //explorers
+    Route::get('/explore', 'ExplorerController@users')->name('explore.show');
+
+    //follow
+    Route::post('/profiles/{user}/follow','FollowController@store')->name('follow');
+
+    Route::get('/profiles/{id}/followings/','FollowController@getFollowings')->name('user.followings');
+    Route::get('/profiles/{id}/followers/','FollowController@getFollowers')->name('user.followers');
+
+
+    
+
 });
-
-Route::post('tweet/store', 'TweetController@store')->name('tweet.store');
-Route::get('/tweets', 'TweetController@show')->name('tweet.show');
-
-
-//explorers
-Route::get('/explore', 'ExplorerController@users')->name('explore.show');
-
-Route::post('/profiles/{user}/follow','FollowsController@store')->name('follow');

@@ -12,7 +12,7 @@ trait Followable{
         return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
     }
 
-    public function followings(){
+    public function user_followers(){
 
         return $this->belongsToMany(User::class,'follows','following_user_id','user_id');
 
@@ -41,5 +41,6 @@ trait Followable{
         $this->follows()->toggle($user);
 
     }
+
 
 }
