@@ -52,7 +52,7 @@
                         <h5 class="fomt-bold mb-4">
                             <div class="flex">
                                 <a href="" class="pt-2 pb-2 pr-5">
-                                    {{ user.name }}
+                                    {{ user }}
                                 </a>
                                 <p class="text-sm mb-3 pt-2">
                                     {{ one.created_at | timeformat }}
@@ -68,8 +68,8 @@
 
                     <div
                         style="right: 690px;
-                    position: absolute;
-                    padding-top: 30px; padding-buttom:10px"
+                        position: absolute;
+                        padding-top: 30px; padding-buttom:10px"
                     ></div>
                 </div>
             </tr>

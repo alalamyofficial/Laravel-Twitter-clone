@@ -17,9 +17,15 @@ class Tweet extends Model
 
     }
 
-    public function likes(){
+    // public function likes(){
 
-        return $this->hasMany(Like::class);
+    //     return $this->hasMany(Like::class);
 
-    }
+    // }
+
+    public function likedUsers()
+    {
+        return $this->belongsToMany(User::class);
+    }  
+
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Tweet;
 use Illuminate\Http\Request;
+use Auth;
+use App\User;
 
 class TweetController extends Controller
 {
@@ -14,14 +16,25 @@ class TweetController extends Controller
      */
     public function index()
     {
-        $tweets = Tweet::latest()->get();
 
-        return  response()->json($tweets,200)->view('tweets.index',[
+        // $tweets = Tweet::where('following_user_id', 1)->with('following')->first()->following->each->tweets;
+
+        $tweets = Tweet::latest()->get(); 
+
+
+
+        return view('tweets.index',[
 
             'tweets' => auth()->user()->timeline()
 
+            // 'tweets' => $tweets
+            
+
         ]);
+        // response()->json($tweets,200)
     }
+
+
 
     /**
      * 
@@ -56,7 +69,7 @@ class TweetController extends Controller
 
         $tweet->save();
 
-        // return redirect()->back();
+        return redirect()->back();
     }
 
     /**
@@ -115,4 +128,20 @@ class TweetController extends Controller
     {
         //
     }
+
+    
+    public function UserTweets()
+    {
+        $tweets = Tweet::latest()->get();
+
+        // return view('public_tweet_panel',compact('userTweet'));
+
+        return view('public_tweet_panel',[
+
+            'tweets' => auth()->user()
+
+        ]);
+
+    }
+
 }

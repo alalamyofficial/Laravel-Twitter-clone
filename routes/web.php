@@ -21,10 +21,11 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', function () {
-    return view('public_tweet_panel');
-})->name('home');
+// Route::get('/home', function () {
+//     return view('public_tweet_panel');
+// })->name('home');
 
+// Route::get('/home', 'TweetController@UserTweets')->name('home');
 
 
 
@@ -40,11 +41,13 @@ Route::group(['middleware' => 'auth'], function () {
     
     
     //tweet
-    // Route::get('/tweets','TweetsController@index')->name('home');
-    Route::post('tweet/store', 'TweetController@store')->name('tweet.store');
-    Route::get('/tweets', 'TweetController@show')->name('tweet.show');
+    Route::get('/tweets','TweetController@index')->name('home');
 
-    Route::post('/like/store','LikesController@store')->name('like');
+    Route::post('tweet/store', 'TweetController@store')->name('tweet.store');
+
+    Route::get('/tweets/show', 'TweetController@show')->name('tweet.show');
+
+    Route::post('/like/tweet/{tweet}','LikesController@likeTweet')->name('like');
 
     //explorers
     Route::get('/explore', 'ExplorerController@users')->name('explore.show');

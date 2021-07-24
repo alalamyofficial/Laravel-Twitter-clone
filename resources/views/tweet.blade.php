@@ -17,16 +17,25 @@
     <div>
 
         <h5 class="font-bold mb-4">
-            <a href="{{route('profile',$tweet->user)}}">
-            <!-- if getRouteKey not found will e ==>  $tweet->user->name , this is called forign key-->
-                {{$tweet->user->username}}
-            </a>
+            
+            <div class="flex"> 
+                <a href="{{route('profile',$tweet->user)}}" class="mr-5">
+                <!-- if getRouteKey not found will e ==>  $tweet->user->name , this is called forign key-->
+                    {{$tweet->user->username}}
+                </a>
+
+                <p class="text-sm mr-3">
+                    {{ $tweet->created_at->diffForHumans() }}
+                </p>
+            
+            </div>
         </h5>
 
             
             <p class="text-sm mb-3">
 
                 {{$tweet->body}}
+
 
             </p>   
 
