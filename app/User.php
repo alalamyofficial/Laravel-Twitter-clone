@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','username'
+        'name', 'email', 'password','username','cover','avatar','bio','country'
     ];
 
     /**
@@ -39,9 +39,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAvatarAttribute(){
+    public function getAvatarAttribute($value){
 
-        return "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png";
+        return asset($value ? : "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png");
+
+    }
+
+    public function getCoverAttribute($value){
+
+        return asset($value ? : "https://i.pinimg.com/originals/a1/4b/99/a14b99685158aa23e2117ed121a35dce.jpg");
 
     }
 
@@ -114,6 +120,11 @@ class User extends Authenticatable
         // return Tweet::whereIn('user_id',$friends)
         // ->orWhere('user_id',$this->id)->latest()->paginate(50);
 
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 
 }

@@ -174,6 +174,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Flasher\Laravel\FlasherServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
 
     ],
 
@@ -226,6 +229,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Flasher' => Flasher\Laravel\Facade\Flasher::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
 
     ],
 

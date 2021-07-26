@@ -60,6 +60,8 @@
 
                         <div class="lg:w-32">
 
+
+
                             @include('sidebar_links')
                         
                         </div>
@@ -69,12 +71,15 @@
 
                     <div class="lg:flex-1 lg:mx-10" style="max-width:700px">
 
+
                         @yield('content')            
                         
                     </div>
 
                     @if(auth()->check())
                         <div class="lg:w-1/6 bg-white-100 rounded-lg p-4" style="max-width:700px">
+
+
 
                             @include('friends_list')
 
@@ -107,7 +112,7 @@
 
     </script>
 
-
+    @include('sweetalert::alert')
 
 </body>
 </html>

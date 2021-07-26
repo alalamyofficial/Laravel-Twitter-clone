@@ -42,11 +42,10 @@ Route::group(['middleware' => 'auth'], function () {
     
     //tweet
     Route::get('/tweets','TweetController@index')->name('home');
-
     Route::post('tweet/store', 'TweetController@store')->name('tweet.store');
-
     Route::get('/tweets/show', 'TweetController@show')->name('tweet.show');
 
+    //likes
     Route::post('/like/tweet/{tweet}','LikesController@likeTweet')->name('like');
 
     //explorers
@@ -59,6 +58,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profiles/{id}/followers/','FollowController@getFollowers')->name('user.followers');
 
 
-    
+    //profile
+    Route::get('/profiles/{user}/edit','ProfilesController@edit')->name('user.edit');
+    Route::patch('/profiles/{user}/update', 'ProfilesController@update')->name('user.update');
 
 });

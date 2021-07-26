@@ -20,7 +20,7 @@
 
         </div>
 
-        <button id="btn"><i class="fas fa-icons fa-2x mr-34" style="color:#6e94ea"></i></button>
+        <button id="btn"><i class="far fa-smile-beam fa-2x mr-34" style="color:#6e94ea"></i></button>
 
         <button><i class="fas fa-upload fa-2x" style="color:#6e94ea"></i></button>
 

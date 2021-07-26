@@ -6,6 +6,9 @@ use App\Tweet;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use Flasher\Prime\FlasherInterface;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class TweetController extends Controller
 {
@@ -53,7 +56,7 @@ class TweetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, FlasherInterface $flasher)
     {
         $this->validate($request,
             
@@ -68,6 +71,10 @@ class TweetController extends Controller
         $tweet->body = $request->body;
 
         $tweet->save();
+
+        // $flasher->addInfo('Tweet is Added');
+        toast('Your Tweet is submited!','info');
+
 
         return redirect()->back();
     }

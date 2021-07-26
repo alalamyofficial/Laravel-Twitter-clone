@@ -1,3 +1,5 @@
+
+
 <div class="flex p-4 {{$loop->last ? '' : 'border-b border-b-gray-400' }} ">
 
      
@@ -37,7 +39,25 @@
                 {{$tweet->body}}
 
 
-            </p>   
+            </p><br>
+
+
+            <div class="flex justify-between">
+            
+                <div class="flex">
+                    <button><i class="far fa-comment"></i></i></button> 
+                    <p class="">10</p>
+                </div>
+                <div class="flex">
+                    <button><i class="fas fa-retweet"></i></button>
+                    <p>10</p>
+                </div>
+                <div class="flex justify-between">
+                    <button><i class="far fa-heart"></i></button>
+                    <p>10</p>
+                </div>    
+
+            </div>   
 
 
 

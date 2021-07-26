@@ -3,14 +3,15 @@
 @section('content')
 
 
+
     <header class="mb-6 relative">
 
 
         <div class="relative">
         
             <img class="rounded-lg" 
-            src="https://i.pinimg.com/originals/a1/4b/99/a14b99685158aa23e2117ed121a35dce.jpg" 
-            alt="image">
+            src="{{$user->cover}}" 
+            alt="image" style="height:240px; width:800px;">
 
             <img src="{{$user->avatar}}" alt="image" 
                 class="rounded-full mr-2 absolute buttom-0"
@@ -27,8 +28,7 @@
 
             <div style="max-width:300px">
                 <h2 class="font-bold text-2xl mb-1 mt-2">{{$user->name}}</h2>
-                <h2 class="text-sm mb-1 mt-1"><i class="fas fa-at"></i> {{$user->username}}</h2>
-                <p class="text-sm">Joined {{$user->created_at->diffForHumans()}}</p>
+                <h2 class="text-sm mb-1 mt-1"><i class="fas fa-at" style="color:gray"></i> {{$user->username}}</h2>
             </div>
 
 
@@ -58,11 +58,25 @@
         </div>
 
             <p class="text-sm">
-            
-            Hi, I'm Jeffrey. I'm the creator of Laracasts and spend most of my days building the site and thinking of new ways to teach confusing concepts. I live in Orlando, Florida with my wife and two kids.
+
+                {{$user->bio}}            
 
             </p>
         
+            <div class="flex">
+
+                @if(($user->country) != null)
+                    <p class="text-sm"><i class="fas fa-map-marker-alt mr-2 " style="color:gray"></i>{{$user->country}}</p>
+                @else
+                @endif
+
+                <p class="text-sm"><i class="fas fa-calendar-alt mr-2 ml-3" style="color:gray"></i> Joined {{$user->created_at->diffForHumans()}}</p>
+            
+
+            </div>
+
+
+
             <div class="flex mt-3 mb-3">
             
                 <div class="flex">
