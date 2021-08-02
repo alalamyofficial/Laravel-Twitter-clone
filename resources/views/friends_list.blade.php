@@ -1,32 +1,38 @@
-<h3 class="font-bold text-xl mb-4">Folowing</h3>
+<div class="flex flex-col">
 
 
-<ul style="width:300px">
+    <h3 class="font-bold text-xl mb-4">Following</h3>
 
-    @forelse( auth()->user()->follows as $user )
-    <li class="{{ $loop->last ? '' : 'mb-4' }}">
 
-        <div class="flex items-center text-sm">
+        <ul style="width:300px">
 
-            <a href="">
+            @forelse( auth()->user()->follows as $user )
+            <li class="{{ $loop->last ? '' : 'mb-4' }}">
 
-                <img src="{{$user->avatar}}" alt="" class="rounded-full mr-2" style="width:50px; height:50px">
-            </a>  
+                <div class="flex items-center text-sm">
 
-            <a href="{{route('profile',$user)}}">
+                    <a href="">
 
-                {{$user->name}}
+                        <img src="{{$user->avatar}}" alt="" class="rounded-full mr-2" style="width:50px; height:50px">
+                    </a>  
 
-            </a>    
+                    <a href="{{route('profile',$user)}}">
 
-        </div>
+                        {{$user->name}}
 
-        
-    </li>
+                    </a>    
 
-    @empty
-        <li>No Friends Yet</li>
+                </div>
 
-    @endforelse
+                
+            </li>
 
-</ul>
+            @empty
+                <li>No Friends Yet</li>
+
+            @endforelse
+
+        </ul>
+
+
+</div>

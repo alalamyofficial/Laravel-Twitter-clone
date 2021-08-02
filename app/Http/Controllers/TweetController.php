@@ -60,15 +60,40 @@ class TweetController extends Controller
     {
         $this->validate($request,
             
-            ['body']
+            [
+                'body'=>'required',
+                'image'=>'sometimes',
+            ]
         
         );
 
         $tweet = new Tweet;
 
-        $tweet->user_id = auth()->id();
+        
+        if ($request->hasFile('image')) {
+            
+            $tweet->user_id = auth()->id();
+    
+            $tweet->body = $request->body;
+    
+    
+            $img_file = $request->image;
 
-        $tweet->body = $request->body;
+            $new_image = time().$img_file->getClientOriginalName();
+
+            $img_file->move('public/storage/imgs/',$new_image);
+
+            $tweet->image = 'public/storage/imgs/'.$new_image;
+
+        }
+        else
+        {
+            $tweet->user_id = auth()->id();
+    
+            $tweet->body = $request->body;
+
+        }    
+
 
         $tweet->save();
 
@@ -148,6 +173,15 @@ class TweetController extends Controller
             'tweets' => auth()->user()
 
         ]);
+
+    }
+
+    public function single_tweet($tweet_id){
+
+        $tweets  = Tweet::where('id',$tweet_id)->get();
+
+
+        return view('single_tweet',compact('tweets'));
 
     }
 

@@ -68,6 +68,7 @@
                 @if(($user->country) != null)
                     <p class="text-sm"><i class="fas fa-map-marker-alt mr-2 " style="color:gray"></i>{{$user->country}}</p>
                 @else
+                
                 @endif
 
                 <p class="text-sm"><i class="fas fa-calendar-alt mr-2 ml-3" style="color:gray"></i> Joined {{$user->created_at->diffForHumans()}}</p>

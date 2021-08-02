@@ -9,11 +9,21 @@
     </li>
 
     <li>
-        <a class="font-bold text-lg mb-4 block" href="#"><i class="fas fa-bell mr-2"></i> Notification</a>
+        <a class="font-bold text-lg mb-4 block" href="#">
+        <div class="flex">
+            <notifications></notifications>
+            <p style="  top: 10px;
+                        position: relative;
+                        right: 12px;
+                    ">
+                Notifications
+            </p>
+        </div>
+        </a>
     </li>
 
     <li>
-        <a class="font-bold text-lg mb-4 block" href="#"><i class="fas fa-envelope mr-3"></i> Messages</a>
+        <a class="font-bold text-lg mb-4 block" href="/chatify"><i class="fas fa-envelope mr-3"></i> Messages</a>
     </li>
 
     <li>

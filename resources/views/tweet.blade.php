@@ -41,27 +41,79 @@
 
             </p><br>
 
+            
+            <img class="pb-3" src="{{asset($tweet->image)}}" alt="" style="width:400px">
+
 
             <div class="flex justify-between">
             
+                <!-- <a href="{{route('single_tweet',$tweet->id)}}">
+                    <div class="flex">
+                        <button><i class="far fa-comment"></i></i></button> 
+                        <p class="">10</p>
+                    </div>
+                </a> -->
                 <div class="flex">
-                    <button><i class="far fa-comment"></i></i></button> 
-                    <p class="">10</p>
+                    <button class="" type="submit" data-toggle="collapse" data-target="#view-comments-{{$tweet->id}}" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="far fa-comment"></i></i>                
+                    </button> 
+                    <p>{{count($tweet->comments)}}</p>
+                                
                 </div>
+
                 <div class="flex">
                     <button><i class="fas fa-retweet"></i></button>
                     <p>10</p>
                 </div>
+
                 <div class="flex justify-between">
-                    <button><i class="far fa-heart"></i></button>
+                    <a href="#" class="like"><i class="far fa-thumbs-up"></i></a>
                     <p>10</p>
-                </div>    
+                </div>
+
+                <div class="flex">
+
+                    <a href="#" class="like"><i class="far fa-thumbs-down"></i></a>
+                    <p>10</p>
+
+                </div>
+
+                <!-- <a href="tweet/like" class="like">Like</a>
+                <a href="#" class="like">Dislike</a> -->
+
 
             </div>   
 
 
 
+    </div>
 
     </div>
+
+        <form action="{{route('comment.store',$tweet->id)}}" method="post">
+        @csrf
+            <div class="collapse" id="view-comments-{{$tweet->id}}">
+                <div class="input-group mb-3 col-12">
+                    <input name="comment" type="text" class="form-control" placeholder="Tweet Comment" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append flex">
+                        <button class="btn btn-outline-secondary" type="submit">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+
+                </div>
+                    
+                @include('comments.show')
+
+            </div>
+        </form>
+
+
+    <div>
+
+
+
+
 
 </div>

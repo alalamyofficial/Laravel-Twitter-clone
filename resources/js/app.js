@@ -15,6 +15,30 @@ Vue.filter("timeformat", function(arg) {
     return moment(arg).format("MMM Do YY");
 });
 
+// import Turbolinks from "turbolinks";
+// Turbolinks.start();
+
+// document.addEventListener("turbolinks:load", () => {
+//     new Vue({
+//         el: "#app",
+
+//         beforeMount() {
+//             if (this.$el.parentNode) {
+//                 document.addEventListener(
+//                     "turbolinks:visit",
+//                     () => this.$destroy(),
+//                     { once: true }
+//                 );
+
+//                 this.$originalEl = this.$el.outerHTML;
+//             }
+//         },
+//         destroyed() {
+//             this.$el.outerHTML = this.$originalEl;
+//         }
+//     });
+// });
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -31,6 +55,12 @@ Vue.component(
     require("./components/ExampleComponent.vue").default
 );
 Vue.component("tweet", require("./components/Tweet.vue").default);
+Vue.component("addcommemt", require("./components/AddComment.vue").default);
+Vue.component("getcommemt", require("./components/GetComment.vue").default);
+Vue.component(
+    "notifications",
+    require("./components/Notifications.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38,6 +68,8 @@ Vue.component("tweet", require("./components/Tweet.vue").default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: "#app"
+document.addEventListener("turbolinks:load", () => {
+    const app = new Vue({
+        el: "#app"
+    });
 });

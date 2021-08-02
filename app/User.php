@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\User;
 use DB;
+use App\Comment;
+use App\Tweet;
 
 class User extends Authenticatable
 {
@@ -41,7 +43,7 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value){
 
-        return asset($value ? : "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png");
+        return asset($value ? : "user.png");
 
     }
 
@@ -126,5 +128,27 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    // public function setPasswordAttribute($password)
+    // {
+    //     $this->attributes['password'] = \Hash::make($password);
+    // }
+    
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+    // public function likes()
+    // {
+    //     return $this->belongsToMany('App\Tweet', 'likes', 'user_id', 'tweet_id');
+    // }
+    public function likes()
+    {
+        return $this->belongsToMany('App\Like');
+    }
+
+
 
 }

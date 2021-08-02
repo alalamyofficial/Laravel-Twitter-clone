@@ -32,7 +32,7 @@ Auth::routes();
 
 
 //profile
-Route::get('/profile/{user}','ProfilesController@show')->name('profile');
+Route::get('profile/{user}','ProfilesController@show')->name('profile');
 
 //like
 
@@ -41,12 +41,17 @@ Route::group(['middleware' => 'auth'], function () {
     
     
     //tweet
-    Route::get('/tweets','TweetController@index')->name('home');
+    Route::get('tweets','TweetController@index')->name('home');
     Route::post('tweet/store', 'TweetController@store')->name('tweet.store');
     Route::get('/tweets/show', 'TweetController@show')->name('tweet.show');
+    Route::get('/tweet/{tweet_id}', 'TweetController@single_tweet')->name('single_tweet');
 
     //likes
-    Route::post('/like/tweet/{tweet}','LikesController@likeTweet')->name('like');
+    // Route::post('/like/tweet/{tweet}','LikesController@likeTweet')->name('like');
+    // Route::post('{user}/like','LikesController@store')->name('like');
+    Route::post('tweet/like', 'LikesController@likeTweet')->name('like');
+
+
 
     //explorers
     Route::get('/explore', 'ExplorerController@users')->name('explore.show');
@@ -61,5 +66,15 @@ Route::group(['middleware' => 'auth'], function () {
     //profile
     Route::get('/profiles/{user}/edit','ProfilesController@edit')->name('user.edit');
     Route::patch('/profiles/{user}/update', 'ProfilesController@update')->name('user.update');
+
+    //Comment
+    Route::post('comment/store/{tweet}', 'CommentController@addComment')->name('comment.store');
+    Route::get('/getComments/{tweet}', 'CommentController@getComments')->name('comment.show');
+
+    //notifications
+    Route::get('unreadNotifications', 'CommentController@unreadNotifications');
+    Route::get('markAsRead', 'CommentController@markAsRead');
+    Route::get('/notifications', 'NotificationController@all_notifications');
+
 
 });

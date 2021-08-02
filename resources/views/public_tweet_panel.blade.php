@@ -1,6 +1,6 @@
 <div class="border-2 border-blue-500 rounded-lg px-8 py-6 mb-8">
 
-<form action="/tweet/store" method="POST">
+<form action="/tweet/store" method="POST" enctype="multipart/form-data">
 
     @csrf
 
@@ -20,9 +20,16 @@
 
         </div>
 
-        <button id="btn"><i class="far fa-smile-beam fa-2x mr-34" style="color:#6e94ea"></i></button>
+        <button id="btn" style="position: absolute; right: 945px"><i class="far fa-smile-beam fa-2x mr-34" style="color:#6e94ea"></i></button>
 
-        <button><i class="fas fa-upload fa-2x" style="color:#6e94ea"></i></button>
+        <!-- upload image button -->
+        <label class="btn btn-default btn-file" style="position: absolute; left: 510px">
+            <i id="filePhoto" class="fas fa-upload fa-2x" style="color:#6e94ea"></i> 
+            <input type="file" name="image" id="filePhoto" style="display: none;" 
+            onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+            >
+        </label>
+        <img id="blah"  width="50" height="50" />
 
 
         <button

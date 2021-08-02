@@ -40,12 +40,13 @@
 </head>
 <body>
     <div id="app">
+    <section>
         <section class="px-4 mb-4">
             
             <header class="container mx-auto mt-6">
 
                 <h1>
-                    <img src="tweet.png" alt="" width="60px"> 
+                    <img src="{{asset('tweet.png')}}" alt="" width="60px"> 
                 </h1>
 
             </header>
@@ -81,7 +82,8 @@
 
 
 
-                            @include('friends_list')
+                                @include('friends_list')
+
 
                         </div>
                     @endif    
@@ -89,13 +91,15 @@
                 </div>
             </main>
         </section>
+    </section>
 
 
     </div>
 
     <script src="http://unpkg.com/turbolinks"></script>
 
-
+     <script src="{{asset('js/like.js')}}"></script>   
+     <script src="{{asset('js/upload.js')}}"></script>   
 
     <script>
     
@@ -110,6 +114,11 @@
 
     });
 
+    </script>
+
+    <script>
+        var token = '{{ Session::token() }}';
+        var urlLike = '{{ route('like') }}';
     </script>
 
     @include('sweetalert::alert')

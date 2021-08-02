@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Tweet;
 use Illuminate\Validation\Rule;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Notifications\CommentNotifications;
+
 
 class ProfilesController extends Controller
 {
@@ -14,6 +17,7 @@ class ProfilesController extends Controller
         return view('profiles.show')
         ->with('user',$user)
         ->with('tweets',$user->tweets()->paginate(10));
+        // ->with('tweets',auth()->user()->timeline());
 
     }
 
@@ -88,6 +92,9 @@ class ProfilesController extends Controller
 
 
         $user->update($attributes);
+
+        toast('Your Profile has been edited!','info');
+
 
         return redirect()->route('profile',compact('user'));
 

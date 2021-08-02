@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Flasher\Laravel\FlasherServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        \Chatify\ChatifyServiceProvider::class,
 
 
     ],
@@ -231,6 +232,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Flasher' => Flasher\Laravel\Facade\Flasher::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
+        'Chatify' => Chatify\Facades\ChatifyMessenger::class,
 
 
     ],
