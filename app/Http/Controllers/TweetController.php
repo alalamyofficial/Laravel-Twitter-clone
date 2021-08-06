@@ -8,6 +8,8 @@ use Auth;
 use App\User;
 use Flasher\Prime\FlasherInterface;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Like;
+use DB;
 
 
 class TweetController extends Controller
@@ -61,7 +63,7 @@ class TweetController extends Controller
         $this->validate($request,
             
             [
-                'body'=>'required',
+                'body'=>'sometimes',
                 'image'=>'sometimes',
             ]
         
@@ -156,9 +158,11 @@ class TweetController extends Controller
      * @param  \App\Tweet  $tweet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tweet $tweet)
+    public function destroy(Tweet $tweet,$id)
     {
-        //
+        $mytweet = Tweet::findOrFail($id);
+        $mytweet->destroy($id);
+        return back(); 
     }
 
     
@@ -185,4 +189,73 @@ class TweetController extends Controller
 
     }
 
+    public function storeLike(Tweet $tweet) {
+
+        // if($tweet->likesCount() == 0 || $tweet->likesCount() == 1 )
+        // {
+                
+        //     $tweet->like();
+        //     return redirect()->back();
+
+        // }
+        // elseif($tweet->likesCount() == 1){
+
+        //     $this->destroyLike($tweet);   
+        //     return redirect()->back();
+        // }
+
+        // else{
+
+        //     $this->destroyLike($tweet);   
+        //     return redirect()->back();
+        // }
+        
+        // return redirect()->back();
+        $data = $tweet->like();
+        return response()->json($data, 200);
+
+    }
+
+    public function destroyLike(Tweet $tweet) {
+
+        $data = $tweet->unlike();
+        return response()->json($data, 200);
+        // return redirect()->back();
+
+    }
+
+    public function toggleLike(Tweet $tweet){
+
+        if($tweet->likesCount() == 1 || $tweet->likesCount() == 0){
+
+            $likeable_type	= 'App/Tweet';
+
+            $this->storeLike($tweet);
+            return redirect()->back();
+            
+        }
+        
+        else{
+            
+            $this->destroyLike($tweet);   
+            return redirect()->back();
+
+        }
+
+
+    }
+
+    // public function toggle(Tweet $tweet){
+
+    //     current_user()->toggleLike($tweet);
+
+
+    // }
+
+    // public function storeLike(Tweet $tweet) {
+
+    //     $data = current_user()->toggleLike($tweet);
+    //     return response()->json($data, 200);
+
+    // }
 }

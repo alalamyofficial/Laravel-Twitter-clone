@@ -1,30 +1,21 @@
 
-<!-- <addcommemt :userid="{{Auth::user()->id}}" :tweetid="{{$tweet->id}}"></addcommemt> -->
-
-<!-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-<form action="{{route('comment.store')}}" method="post">
+<form action="{{route('comment.store',$tweet->id)}}" method="post">
 @csrf
-    <div class="flex">
-        <textarea
-            name="comment"
-            class="form-control mb-1"
-            rows="2"
-            placeholder="Write a comment here..."
-            id="example1"
-            data-emoji-input="unicode"
-            data-emojiable="true"
-        ></textarea>
-        <button class="btn btn-light">Comment</button>
-    </div>
+    <div class="collapse" id="view-comments-{{$tweet->id}}">
+        <div class="input-group mb-3 col-12">
+            <input name="comment" type="text" class="form-control" placeholder="Tweet Comment">
 
+
+            <div class="input-group-append flex">
+                <button class="btn btn-outline-secondary" type="submit">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </div>
+
+
+        </div>
+            
+        @include('comments.show')
+
+    </div>
 </form>
- -->

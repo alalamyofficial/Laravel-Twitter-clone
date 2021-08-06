@@ -3,31 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
 
 class Like extends Model
 {
-    use SoftDeletes;
+    protected $fillable = ['user_id','likeable_id','likeable_type'];
 
+    public function user(){
 
-    // public $with = ['user'];
-
-
-    protected $fillable = [
-
-        'user_id','tweet_id','like'
-    ];
-
-    public function tweets(){
-
-        return $this->belongsTo(Tweet::class);
-
+        return $this->belongsTo(User::class);
     }
 
-    public function users(){
+    public function tweet(){
 
-        return $this->belongsTo(user::class);
-
+        return $this->belongsTo(Tweet::class);
     }
 }

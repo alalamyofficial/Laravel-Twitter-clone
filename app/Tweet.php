@@ -4,13 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Like;
 
-class Tweet extends Model
+
+class Tweet extends Model 
 {
-    protected $fillable = ['user_id','body','image'];
+
+    use HasLikes;
+
+
+    protected $fillable = ['user_id','body','image','likeable_id'];
 
     
-    // public $with = ['user','likes'];
 
     public function user(){
 
@@ -18,25 +23,27 @@ class Tweet extends Model
 
     }
 
-    // public function likes(){
-
-    //     return $this->hasMany(Like::class);
-
-    // }
 
     public function likedUsers()
     {
         return $this->belongsToMany(User::class);
     } 
     
-    public function likes()
-    {
-        return $this->belongsToMany('App\Like');
-    }
 
     public function comments(){
 
         return $this->hasMany(Comment::class);
+    }
+
+    public function bookmark_to_users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
+
+    public function likes()
+    {
+        $likeable_type	= 'App/Tweet';
+        return $this->hasMany('App\Like','likeable_id');
     }
 
 }

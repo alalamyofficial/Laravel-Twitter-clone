@@ -82,7 +82,7 @@
 
 
 
-                                @include('friends_list')
+                            @include('friends_list')
 
 
                         </div>
@@ -100,25 +100,31 @@
 
      <script src="{{asset('js/like.js')}}"></script>   
      <script src="{{asset('js/upload.js')}}"></script>   
+     <!-- <script src="{{asset('js/emojies.js')}}"></script>    -->
+     <script src="{{asset('js/fgEmojiPicker.js')}}"></script>   
+     <script src="{{asset('js/emojionearea.min.js')}}"></script>   
+     <script src="{{asset('js/emojionearea.js')}}"></script>   
 
     <script>
     
-    new FgEmojiPicker({
-        trigger: ['#btn'],
-        position: ['bottom', 'right'],
-        dir: 'js/',
-        emit(obj, triggerElement) {
-            const emoji = obj.emoji;
-            document.querySelector('textarea').value += emoji;
-        }
+        new FgEmojiPicker({
+            
+            trigger: ["#btn"],
+            position: ["bottom", "right"],
+            dir: "js/",
+            emit(obj, triggerElement) {
+                    const emoji = obj.emoji;
+                    document.querySelector("textarea").value += emoji;
+            }
+        });
 
-    });
 
     </script>
 
+
     <script>
         var token = '{{ Session::token() }}';
-        var urlLike = '{{ route('like') }}';
+
     </script>
 
     @include('sweetalert::alert')

@@ -18,4 +18,9 @@ class UserPolicy
     {
         return $currentUser->is($user);
     }
+    public function tweet_action(User $currentUser , User $user)
+    {
+        return $currentUser->is($user);
+    }
 }
+

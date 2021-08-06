@@ -99,4 +99,42 @@ class ProfilesController extends Controller
         return redirect()->route('profile',compact('user'));
 
     }
+
+    public function liked_tweets(){
+
+
+    }
+
+    public function media_tweets(User $user){
+        
+        return view('profiles.tweets.media')
+        ->with('user',$user)
+        ->with('tweets',$user->tweets()->where('image' , '!=' , NULL )->paginate(10));
+
+    }
+
+    public function like_tweets(User $user){
+        
+        // $tweet = Tweet::find($id);
+
+
+        return view('profiles.tweets.like')
+        ->with('user',$user)
+        ->with('tweets',$user->tweets()->whereHas('likes')->paginate(10) );
+
+
+    }
+
+    public function replies_tweets(){
+
+
+    }
+
+    public function group_tweets(User $user){
+        
+        return view('tweet_group')
+        ->with('user',$user)
+        ->with('tweets',$user->tweets()->where('image' , '!=' , NULL )->latest()->get(6));
+
+    }
 }

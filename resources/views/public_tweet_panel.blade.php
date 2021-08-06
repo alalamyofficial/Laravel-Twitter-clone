@@ -20,15 +20,22 @@
 
         </div>
 
-        <button id="btn" style="position: absolute; right: 945px"><i class="far fa-smile-beam fa-2x mr-34" style="color:#6e94ea"></i></button>
+        <button id="btn">
+            <i class="far fa-smile-beam fa-2x mr-34" style="color:#6e94ea;"     
+                
+            ></i>
+        </button>
 
+        <!-- <button class="light" style="border:2px solid #6e94ea; padding:3px">Gif</button> -->
         <!-- upload image button -->
-        <label class="btn btn-default btn-file" style="position: absolute; left: 510px">
+        <label class="btn btn-default btn-file">
             <i id="filePhoto" class="fas fa-upload fa-2x" style="color:#6e94ea"></i> 
             <input type="file" name="image" id="filePhoto" style="display: none;" 
             onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
             >
         </label>
+
+
         <img id="blah"  width="50" height="50" />
 
 
@@ -58,3 +65,14 @@
 
 
 </div>
+
+
+<!-- <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+      </div>
+    </div>
+  </div>
+</div> -->

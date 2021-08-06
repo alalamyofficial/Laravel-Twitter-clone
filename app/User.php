@@ -9,10 +9,11 @@ use App\User;
 use DB;
 use App\Comment;
 use App\Tweet;
+use App\Like;
 
 class User extends Authenticatable
 {
-    use Notifiable , Followable;
+    use Notifiable , Followable , HasLikes;
 
     /**
      * The attributes that are mass assignable.
@@ -144,11 +145,30 @@ class User extends Authenticatable
     // {
     //     return $this->belongsToMany('App\Tweet', 'likes', 'user_id', 'tweet_id');
     // }
-    public function likes()
+    // public function likes()
+    // {
+    //     return $this->belongsToMany('App\Like','likes');
+    // }
+
+    public function bookmark_tweets()
     {
-        return $this->belongsToMany('App\Like');
+        return $this->belongsToMany('App\Tweet','bookmark_tweet')->withTimestamps();
     }
 
-
-
+    // public function like(){
+    //     return $this->hasMany('App\Like','likes','user_id','id');
+    //   }
+  
+    //   public function userLikes(){
+    //     return $this->belongsToMany('App\Tweet', 'likes','user_id','tweet_id');
+    //   }
+  
+    //   public function isLiking(Tweet $tweet)
+    //   {
+    //       return !is_null($this->userLikes()->where('user_id', $tweet->user_id)->first());
+    //   }
+    public function likes()
+    {
+        return $this->hasMany('App\Like','likeable_id');
+    }
 }

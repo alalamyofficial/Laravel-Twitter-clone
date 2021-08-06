@@ -33,6 +33,8 @@ Auth::routes();
 
 //profile
 Route::get('profile/{user}','ProfilesController@show')->name('profile');
+Route::get('profile/{user}/media','ProfilesController@media_tweets')->name('media_tweets');
+Route::get('profile/{user}/like','ProfilesController@like_tweets')->name('like_tweets');
 
 //like
 
@@ -45,14 +47,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('tweet/store', 'TweetController@store')->name('tweet.store');
     Route::get('/tweets/show', 'TweetController@show')->name('tweet.show');
     Route::get('/tweet/{tweet_id}', 'TweetController@single_tweet')->name('single_tweet');
+    Route::delete('/tweets/delete/{id}', 'TweetController@destroy')->name('tweet.destroy');
+
 
     //likes
     // Route::post('/like/tweet/{tweet}','LikesController@likeTweet')->name('like');
     // Route::post('{user}/like','LikesController@store')->name('like');
-    Route::post('tweet/like', 'LikesController@likeTweet')->name('like');
+    // Route::post('tweet/like/{tweet}', 'LikesController@likeTweet')->name('like.store');
+    // Route::post('/likes/{id}', 'LikesController@likes');
+    // Route::post('/unlikes/{id}', 'LikesController@unlikes');
+    // Route::post('like', 'TweetController@LikeTweet')->name('like');
+    // Route::post('tweets/{tweet}/likes', 'TweetController@storeLike')->name('tweets.likes.store');
+    Route::delete('tweets/{tweet}/likes', 'TweetController@destroyLike')->name('tweets.likes.destroy');
 
+    Route::post('tweets/{tweet}/likes', 'TweetController@toggleLike')->name('tweets.likes.store');
 
-
+    
     //explorers
     Route::get('/explore', 'ExplorerController@users')->name('explore.show');
 
@@ -75,6 +85,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('unreadNotifications', 'CommentController@unreadNotifications');
     Route::get('markAsRead', 'CommentController@markAsRead');
     Route::get('/notifications', 'NotificationController@all_notifications');
+
+    //bookmark
+    Route::post('bookmark/{tweet}/add','BookmarkController@add')->name('tweet.bookmark');
+    Route::get('bookmark/show','BookmarkController@show')->name('tweet.showBookmark');
 
 
 });

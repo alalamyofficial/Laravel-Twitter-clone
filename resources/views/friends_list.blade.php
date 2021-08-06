@@ -1,6 +1,13 @@
 <div class="flex flex-col">
 
 
+    <div class="mr-3">
+        @include('tweet_group')
+    </div>
+
+    <br><br><hr><br>
+
+
     <h3 class="font-bold text-xl mb-4">Following</h3>
 
 
