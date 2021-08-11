@@ -96,7 +96,7 @@
 
         <a href="{{route('single_tweet',$tweet->id)}}">
 
-            <img class="pb-3" src="{{asset($tweet->image)}}" alt="" style="width:400px">
+            <img class="pb-3" src="{{asset($tweet->image)}}" alt="" style="width:600px">
 
         </a> 
 

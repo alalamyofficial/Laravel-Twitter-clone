@@ -134,7 +134,10 @@ class ProfilesController extends Controller
         
         return view('tweet_group')
         ->with('user',$user)
-        ->with('tweets',$user->tweets()->where('image' , '!=' , NULL )->latest()->get(6));
+        ->with('tweets',$user->tweets()->where('image' , '!=' , NULL )
+        ->orderBy('created_at','desc')->take(6)->get()
+
+        );
 
     }
 }

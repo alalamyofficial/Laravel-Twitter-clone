@@ -9,7 +9,7 @@
     </li>
 
     <li>
-        <a class="font-bold text-lg mb-4 block" href="#">
+        <a class="font-bold text-lg mb-4 block">
         <div class="flex">
             <notifications></notifications>
             <p style="  top: 10px;
@@ -86,7 +86,7 @@
 
             <div class="modal-body">
                 
-                @include('public_tweet_panel')
+                @include('popup_tweet_panel')
 
             </div>
     </div>

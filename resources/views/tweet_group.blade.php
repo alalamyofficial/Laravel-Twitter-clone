@@ -1,32 +1,25 @@
 
 <div class="flex">
 
-<div id="content" style="
+    <div id="content" >
+        <div class="grid grid-cols-3">
+            @forelse($tweets as $tweet)
 
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: 25px;
-        grid-row-gap: 25px;
-        width:100%;
+                @if($tweet->image != Null)    
 
-        ">
-  <div class="wrapper" style="  max-width:100%;">
-        @forelse($tweets as $tweet)
+                        <img src="{{asset($tweet->image)}}" alt="" 
+                        class="img-fluid img-center img-thumbnail object-fill"
+                        style="height: 95px;"
+                        > 
 
-            @if($tweet->image != Null)    
+                @endif
+                
+            @empty
+                <p class="p-4">No Media Yet</p>
 
-                    <img src="{{asset($tweet->image)}}" alt="" 
-                    class="img-fluid img-thumbnail"
-                    > 
-
-            @endif
-            
-        @empty
-            <p class="p-4">No Media Yet</p>
-
-        @endforelse  
+            @endforelse  
+        </div>
     </div>
-</div>
 </div>
 
 

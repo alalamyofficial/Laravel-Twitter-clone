@@ -1,5 +1,15 @@
 <div class="border-2 border-blue-500 rounded-lg px-8 py-6 mb-8">
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form action="/tweet/store" method="POST" enctype="multipart/form-data">
 
     @csrf

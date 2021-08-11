@@ -10,7 +10,7 @@ use Flasher\Prime\FlasherInterface;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Like;
 use DB;
-
+use App\Hashtag;
 
 class TweetController extends Controller
 {
@@ -71,6 +71,8 @@ class TweetController extends Controller
 
         $tweet = new Tweet;
 
+        $hashtags = $this->extractHashtags($request->input('body'));
+
         
         if ($request->hasFile('image')) {
             
@@ -87,6 +89,14 @@ class TweetController extends Controller
 
             $tweet->image = 'public/storage/imgs/'.$new_image;
 
+            $tweet->save();
+
+
+            foreach ($hashtags as $singleHashtag){
+                $hashtag = Hashtag::firstOrCreate(['slug' => $singleHashtag]);
+                $tweet->hashtags()->attach($hashtag);
+            }
+
         }
         else
         {
@@ -94,12 +104,20 @@ class TweetController extends Controller
     
             $tweet->body = $request->body;
 
+            $tweet->save();
+
+
+            foreach ($hashtags as $singleHashtag){
+                $hashtag = Hashtag::firstOrCreate(
+                    ['slug' => $singleHashtag]
+                );
+                $tweet->hashtags()->attach($hashtag);
+            }
+
         }    
 
 
-        $tweet->save();
 
-        // $flasher->addInfo('Tweet is Added');
         toast('Your Tweet is submited!','info');
 
 
@@ -258,4 +276,20 @@ class TweetController extends Controller
     //     return response()->json($data, 200);
 
     // }
+
+    public function extractHashtags($body)
+    {
+        preg_match_all("/(#\w+)/u", $body, $matches);
+
+        if( $matches ){
+            $hashtagsValues = array_count_values($matches[0]);
+            $hashtags = array_keys($hashtagsValues);
+        }
+
+        array_walk($hashtags, function(&$value){
+            $value = str_replace("#", "", $value);
+        });
+
+        return $hashtags;
+    }
 }

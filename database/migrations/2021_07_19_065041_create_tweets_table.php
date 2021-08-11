@@ -17,7 +17,7 @@ class CreateTweetsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('image')->nullable();
-            $table->text('body')->nullable();
+            $table->text('body');
             // $table->text('bookmark')->default(0);
             $table->timestamps();
         });

@@ -1,14 +1,15 @@
-<div class="flex flex-col">
+<div class="flex flex-col" style="    
+    max-width: 1000px;
+    width: 315px;">
 
 
     <div class="mr-3">
-        @include('tweet_group')
     </div>
 
     <br><br><hr><br>
 
 
-    <h3 class="font-bold text-xl mb-4">Following</h3>
+    <h3 class="font-bold text-xl mb-4">You might like</h3>
 
 
         <ul style="width:300px">
@@ -40,6 +41,13 @@
             @endforelse
 
         </ul>
+        <br><br><hr><br>
+
+    <div class="mr-3">
+
+        @include('profiles.trends')
+
+    </div>
 
 
 </div>

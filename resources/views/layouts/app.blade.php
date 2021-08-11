@@ -62,8 +62,9 @@
                         <div class="lg:w-32">
 
 
-
                             @include('sidebar_links')
+                        
+                            
                         
                         </div>
 
@@ -78,7 +79,7 @@
                     </div>
 
                     @if(auth()->check())
-                        <div class="lg:w-1/6 bg-white-100 rounded-lg p-4" style="max-width:700px">
+                        <div class="lg:w-1/6 bg-white-100 rounded-lg p-4" style="max-width:1000px">
 
 
 
@@ -107,6 +108,9 @@
 
     <script>
     
+    window.onload = function em(){ 
+
+    
         new FgEmojiPicker({
             
             trigger: ["#btn"],
@@ -114,12 +118,35 @@
             dir: "js/",
             emit(obj, triggerElement) {
                     const emoji = obj.emoji;
-                    document.querySelector("textarea").value += emoji;
+                    document.querySelector("#example1").value += emoji;
             }
+            
         });
+
+    };
+
 
 
     </script>
+
+     <script>
+     
+        function em1(){ 
+
+        new FgEmojiPicker({
+                
+                trigger: ["#btn1"],
+                position: ["bottom", "right"],
+                dir: "js/",
+                emit(obj, triggerElement) {
+                        const emoji = obj.emoji;
+                        document.querySelector("#example2").value += emoji;
+                }
+                
+            });
+        };    
+     
+     </script>   
 
 
     <script>

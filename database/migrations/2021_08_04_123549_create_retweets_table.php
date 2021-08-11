@@ -15,6 +15,9 @@ class CreateRetweetsTable extends Migration
     {
         Schema::create('retweets', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('tweet_id');
+            $table->integer('tweeted_id');
             $table->timestamps();
         });
     }

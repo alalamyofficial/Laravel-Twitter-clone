@@ -90,5 +90,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('bookmark/{tweet}/add','BookmarkController@add')->name('tweet.bookmark');
     Route::get('bookmark/show','BookmarkController@show')->name('tweet.showBookmark');
 
+    //hashtags
+    Route::get('/hashtag/{hashtag}', 'HashtagController@index')->name('hashtag');
 
 });
+

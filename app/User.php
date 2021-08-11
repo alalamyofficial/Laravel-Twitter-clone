@@ -171,4 +171,15 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Like','likeable_id');
     }
+
+    public function retweets()
+    {
+        return $this->hasMany('App\Retweet');
+    }
+
+
+    public function retweeted_tweets()
+    {
+        return $this->belongsToMany('App\Retweet','retweets')->withTimestamps();
+    }
 }
