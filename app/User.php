@@ -196,4 +196,15 @@ class User extends Authenticatable
     		return User::find(Auth::id());
     	return false;
     }
+
+    public function retweets()
+    {
+        return $this->hasMany('App\Retweet');
+    }
+
+
+    public function retweeted_tweets()
+    {
+        return $this->belongsToMany('App\Retweet','retweets')->withTimestamps();
+    }
 }

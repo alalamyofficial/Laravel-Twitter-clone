@@ -12,6 +12,7 @@ class HashtagController extends Controller
     {
         $hashtag = Hashtag::where('slug', $hashtag)->first();
 
+<<<<<<< HEAD
         $retweetCount = auth()->user()->tweets()->where('id','==','original_tweet')->count();
 
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
@@ -27,10 +28,18 @@ class HashtagController extends Controller
             'retweetCount' => $retweetCount,
             'hashtags' => $hashtags,
             'tweetsHashtags'=> $tweetsHashtags
+=======
+        $tweets = $hashtag->tweets()->latest()->paginate(10);
+
+        return view('hashtags.index', [
+            'hashtag' => $hashtag,
+            'tweets'=> $tweets
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
         ]);
         // return redirect()->back();
     }
 
+<<<<<<< HEAD
     public function scopeShowTopHashtag($query)
     {
         $query->leftJoin('tweets', 'tweet.hashtag_id', '=', 'hashtag.id')
@@ -40,11 +49,15 @@ class HashtagController extends Controller
     }
 
     public function trends(){
+=======
+    public function trends(Hashtag $hashtag){
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
 
         // $hashtags = DB::table('tweet_hashtags')->get();
 
         // $hashtags = Hashtag::where('slug', $hashtag)->first();
 
+<<<<<<< HEAD
         // $hashtags = Hashtag::all();
         // $hashtags = Hashtag::showTopHashtag()->get();
         // $hashtags =  Hashtag::OrderBy('slug', 'DESC')->get();
@@ -110,4 +123,10 @@ class HashtagController extends Controller
     }
 
 
+=======
+        $hashtags = Hashtag::with('tweets')->withCount('tweets');
+
+        return view('profiles.trends',compact('hashtags'));
+    }
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
 }

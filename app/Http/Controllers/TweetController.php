@@ -241,4 +241,24 @@ class TweetController extends Controller
     }
 
 
+<<<<<<< HEAD
+=======
+    // }
+
+    public function extractHashtags($body)
+    {
+        preg_match_all("/(#\w+)/u", $body, $matches);
+
+        if( $matches ){
+            $hashtagsValues = array_count_values($matches[0]);
+            $hashtags = array_keys($hashtagsValues);
+        }
+
+        array_walk($hashtags, function(&$value){
+            $value = str_replace("#", "", $value);
+        });
+
+        return $hashtags;
+    }
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
 }

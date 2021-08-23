@@ -17,6 +17,7 @@ class RetweetController extends Controller
 	// {
     //     $source_tweet = Tweet::findOrFail($source_tweet_id);
 
+<<<<<<< HEAD
     //     $hashtags = $this->extractHashtags(request()->input('body'));
 
 
@@ -155,6 +156,22 @@ class RetweetController extends Controller
         $newRetweet->original_tweet = $id;
         $newRetweet->owner_tweet_id = $tweet->user->id;
         $newRetweet->save();
+=======
+        $user = Auth::user();
+
+        $isBookmark = $user->retweeted_tweets()->where('tweet_id',$tweet)->count();
+
+        if ($isBookmark == 0)
+        {
+            $user->bookmark_tweets()->attach($tweet);
+            // Toastr::success('tweets successfully added to your favorite list :)','Success');
+            return redirect()->back();
+        } else {
+            $user->bookmark_tweets()->detach($tweet);
+            // Toastr::success('tweets successfully removed form your favorite list :)','Success');
+            return redirect()->back();
+        }
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
 
         return redirect()->back();
     }

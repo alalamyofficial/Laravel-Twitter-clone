@@ -8,6 +8,7 @@ use App\Tweet;
 
 class Retweet extends Model
 {
+<<<<<<< HEAD
 
 
     protected $table = 'retweets';
@@ -57,4 +58,30 @@ class Retweet extends Model
         return $this->morphedByMany('App\Tweet', 'reposts');
     }
 
+=======
+    public $fillable = [
+
+        'user_id',
+        'tweet_id',
+        'tweeted_id',
+
+    ];
+
+    public function user(){
+
+        return $this->belongsTo(User::class);
+
+    }
+
+    public function tweet(){
+
+        return $this->belongsTo(Tweet::class);
+
+    }
+
+    public function retweets()
+    {
+        return $this->hasMany('App\Retweet');
+    }
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
 }

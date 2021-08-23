@@ -1,18 +1,31 @@
 <div class="flex flex-col" style="    
     max-width: 1000px;
+<<<<<<< HEAD
     width: 315px;
     margin-top: -23px;
     ">
+=======
+    width: 315px;">
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
 
     <div class="mr-3 mb-4">
         @include('components.search')
     </div><br>
 
+<<<<<<< HEAD
+=======
+    <div class="mr-3">
+    </div>
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
 
     <!-- is route -->
 
     @include('is_route')
 
+<<<<<<< HEAD
+=======
+    <h3 class="font-bold text-xl mb-4">You might like</h3>
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
 
     <br><br>
 
@@ -49,6 +62,13 @@
             @endforelse
 
         </ul>
+        <br><br><hr><br>
+
+    <div class="mr-3">
+
+        @include('profiles.trends')
+
+    </div>
 
      </div>
                

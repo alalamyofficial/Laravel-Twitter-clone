@@ -15,6 +15,7 @@ class CreateRetweetsTable extends Migration
     {
         Schema::create('retweets', function (Blueprint $table) {
             $table->id();
+<<<<<<< HEAD
             // $table->string('owner_tweet_id');
             // $table->string('user_id');
             // $table->unsignedBigInteger('source_tweet_id')->unsigned();
@@ -23,6 +24,11 @@ class CreateRetweetsTable extends Migration
             $table->bigInteger('user_id')->unsigned()->index();
             $table->bigInteger('tweet_id')->unsigned()->index();
 
+=======
+            $table->integer('user_id');
+            $table->integer('tweet_id');
+            $table->integer('tweeted_id');
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
             $table->timestamps();
         });
 

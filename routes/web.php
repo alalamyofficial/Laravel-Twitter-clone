@@ -106,6 +106,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/retweet/create/{id}','RetweetController@store')->name('retweet.create');
     Route::get('/retweet/destroy/{id}', 'RetweetController@noRetweet');
 
+<<<<<<< HEAD
     Route::get('/retweet/all', 'RetweetController@all_retweets');
 
     //list
@@ -120,3 +121,10 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('admin/dashboard','AdminController@dashboard')->name('admin.dashboard');
 Route::get('admin/tweets','AdminController@all_tweets')->name('admin.tweets');
 Route::delete('admin/tweets/destroy/{id}','AdminController@remove_tweet')->name('admin.tweets.destroy');
+=======
+    //hashtags
+    Route::get('/hashtag/{hashtag}', 'HashtagController@index')->name('hashtag');
+
+});
+
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d

@@ -164,6 +164,7 @@ class ProfilesController extends Controller
         return view('tweet_group')
         ->with('user',$user)
         ->with('tweets',$user->tweets()->where('image' , '!=' , NULL )
+<<<<<<< HEAD
         ->with('retweetCount',$retweetCount)
         ->orderBy('created_at','desc')->take(6)->get())
         ->with('hashtags',$hashtags);
@@ -205,6 +206,11 @@ class ProfilesController extends Controller
 
 
         return view('notifications');
+=======
+        ->orderBy('created_at','desc')->take(6)->get()
+
+        );
+>>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
 
     }
 }
