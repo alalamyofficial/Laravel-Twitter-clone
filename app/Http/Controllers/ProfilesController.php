@@ -8,23 +8,34 @@ use App\Tweet;
 use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Notifications\CommentNotifications;
-
+use App\Retweet;
+use App\Hashtag;
 
 class ProfilesController extends Controller
 {
     public function show(User $user){
 
+        $retweetCount = Tweet::where('original_tweet','=',1)->count();
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+        $mytweet = $user->tweets()->where('image' , '!=' , NULL )->paginate(6);
+
+
         return view('profiles.show')
         ->with('user',$user)
-        ->with('tweets',$user->tweets()->paginate(10));
+        ->with('tweets',$user->tweets()->paginate(10))
+        ->with('retweetCount',$retweetCount)
+        ->with('hashtags',$hashtags)
+        ->with('mytweet',$mytweet);
         // ->with('tweets',auth()->user()->timeline());
 
     }
 
     public function edit(User $user){
 
+        $retweetCount = Tweet::where('original_tweet','=',1)->count();
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
         $this->authorize('edit',$user);
-        return view('profiles.edit',compact('user'));
+        return view('profiles.edit',compact('user','retweetCount','hashtags'));
 
     }
 
@@ -100,27 +111,42 @@ class ProfilesController extends Controller
 
     }
 
-    public function liked_tweets(){
+    public function grid_tweets(){
 
+        $mytweet = $user->tweets()->where('image' , '!=' , NULL )->limit(6)->get();
+        // $mytweet = null;
+        return view('grid_photos',compact('mytweet'));
 
     }
 
     public function media_tweets(User $user){
         
+        $retweetCount = Tweet::where('original_tweet','=',1)->count();
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+
         return view('profiles.tweets.media')
         ->with('user',$user)
-        ->with('tweets',$user->tweets()->where('image' , '!=' , NULL )->paginate(10));
+        ->with('tweets',$user->tweets()->where('image' , '!=' , NULL )->paginate(10))
+        ->with('retweetCount',$retweetCount)
+        ->with('hashtags',$hashtags);
+        ;
+        
 
     }
 
     public function like_tweets(User $user){
         
         // $tweet = Tweet::find($id);
-
+        $retweetCount = Tweet::where('original_tweet','=',1)->count();
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
 
         return view('profiles.tweets.like')
         ->with('user',$user)
-        ->with('tweets',$user->tweets()->whereHas('likes')->paginate(10) );
+        ->with('tweets',$user->tweets()->whereHas('likes')->paginate(10))
+        ->with('retweetCount',$retweetCount)
+        ->with('hashtags',$hashtags);
+        ;
+
 
 
     }
@@ -132,9 +158,53 @@ class ProfilesController extends Controller
 
     public function group_tweets(User $user){
         
+        $retweetCount = Tweet::where('original_tweet','=',1)->count();
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+
         return view('tweet_group')
         ->with('user',$user)
-        ->with('tweets',$user->tweets()->where('image' , '!=' , NULL )->latest()->get(6));
+        ->with('tweets',$user->tweets()->where('image' , '!=' , NULL )
+        ->with('retweetCount',$retweetCount)
+        ->orderBy('created_at','desc')->take(6)->get())
+        ->with('hashtags',$hashtags);
+
+
+
+    }   
+
+    public function retweets(User $user){
+
+        // $retweetCount = Tweet::where('original_tweet','=',1)->count();
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+
+        return view('profiles.tweets.retweet')
+        ->with('user',$user)
+        ->with('tweets',$user->tweets()->where('retweet' , '=' , 1)
+        // ->with('retweetCount',$retweetCount)
+        ->paginate(10))
+        ->with('hashtags',$hashtags);
+
+    }
+
+    
+    public function unreadNotifications()
+    {
+        $unreadNotifications = Auth::user()->unreadNotifications;
+        return response()->json($unreadNotifications);
+    }
+
+    public function markAsRead()
+    {
+        // $users = User::user()->get();
+
+        Auth::user()->notifications->markAsRead();
+        return response()->json('success');
+    }
+
+    public function all_notifications(){
+
+
+        return view('notifications');
 
     }
 }

@@ -35,6 +35,7 @@ Auth::routes();
 Route::get('profile/{user}','ProfilesController@show')->name('profile');
 Route::get('profile/{user}/media','ProfilesController@media_tweets')->name('media_tweets');
 Route::get('profile/{user}/like','ProfilesController@like_tweets')->name('like_tweets');
+Route::get('profile/{user}/retweets','ProfilesController@retweets')->name('retweet_tweets');
 
 //like
 
@@ -58,9 +59,13 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::post('/unlikes/{id}', 'LikesController@unlikes');
     // Route::post('like', 'TweetController@LikeTweet')->name('like');
     // Route::post('tweets/{tweet}/likes', 'TweetController@storeLike')->name('tweets.likes.store');
-    Route::delete('tweets/{tweet}/likes', 'TweetController@destroyLike')->name('tweets.likes.destroy');
+    // Route::delete('tweets/{tweet}/likes', 'TweetController@destroyLike')->name('tweets.likes.destroy');
 
-    Route::post('tweets/{tweet}/likes', 'TweetController@toggleLike')->name('tweets.likes.store');
+    // Route::post('tweets/{tweet}/likes', 'TweetController@toggleLike')->name('tweets.likes.store');
+
+    Route::post('tweet/{tweet}/like','LikeController@store')->name('tweet.like');
+    Route::delete('tweet/{tweet}/like','LikeController@destroy')->name('tweet.like');
+    Route::get('tweet/likes/{id}','LikeController@who_like_tweet')->name('tweet.likes');
 
     
     //explorers
@@ -87,8 +92,31 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/notifications', 'NotificationController@all_notifications');
 
     //bookmark
+    Route::get('bookmark','BookmarkController@show')->name('tweet.showBookmark');
     Route::post('bookmark/{tweet}/add','BookmarkController@add')->name('tweet.bookmark');
-    Route::get('bookmark/show','BookmarkController@show')->name('tweet.showBookmark');
+    Route::delete('bookmark/{tweet}/destroy','BookmarkController@destroy')->name('tweet.bookmark.destroy');
+
+    //hashtags
+    Route::get('/hashtag/{hashtag}', 'HashtagController@index')->name('hashtag');
+
+    Route::get('/trends','HashtagController@trends')->name('trends');
+
+
+    //retweet
+    Route::get('/retweet/create/{id}','RetweetController@store')->name('retweet.create');
+    Route::get('/retweet/destroy/{id}', 'RetweetController@noRetweet');
+
+    Route::get('/retweet/all', 'RetweetController@all_retweets');
+
+    //list
+    Route::get('list','ListsController@create')->name('list');
+    Route::post('list','ListsController@store')->name('list.store');
+    Route::delete('list/delete/{id}','ListsController@destroy')->name('list.delete');
 
 
 });
+
+//admin
+Route::get('admin/dashboard','AdminController@dashboard')->name('admin.dashboard');
+Route::get('admin/tweets','AdminController@all_tweets')->name('admin.tweets');
+Route::delete('admin/tweets/destroy/{id}','AdminController@remove_tweet')->name('admin.tweets.destroy');

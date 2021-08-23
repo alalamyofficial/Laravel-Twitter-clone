@@ -172,7 +172,7 @@ class CommentController extends Controller
 
     public function markAsRead()
     {
-        $users = User::user()->get();
+        // $users = User::user()->get();
 
         Auth::user()->notifications->markAsRead();
         return response()->json('success');

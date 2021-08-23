@@ -4,82 +4,50 @@ namespace App\Http\Controllers;
 
 use App\Like;
 use Illuminate\Http\Request;
+use App\User;
+use App\Tweet;
+use App\Hashtag;
+
 
 class LikeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware(['auth']);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function who_like_tweet(Tweet $tweet,$id)
     {
-        //
+
+        $retweetCount = Tweet::where('original_tweet','=',1)->count();
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+        $tweet_id = Tweet::findOrFail($id);
+        $tweet_likes = $tweet_id->likes()->get();
+
+        return view('likes.index',compact('tweet_likes','retweetCount','hashtags'));
+    }          
+
+    public function store(Request $request,Tweet $tweet)
+    {
+
+        if ($tweet->likedBy($request->user())) {
+            return response(null, 409);
+        }
+
+        $tweet->likes()->create([
+            'user_id' => $request->user()->id,
+        ]);
+
+
+        return back();
+
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function destroy(Like $like,Tweet $tweet ,Request $request)
     {
-        //
-    }
+        $request->user()->likes()->where('tweet_id', $tweet->id)->delete();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Like $like)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Like $like)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Like $like)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Like  $like
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Like $like)
-    {
-        //
+        return back();
     }
 }

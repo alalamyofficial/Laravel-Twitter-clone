@@ -10,7 +10,7 @@ use Flasher\Prime\FlasherInterface;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Like;
 use DB;
-
+use App\Hashtag;
 
 class TweetController extends Controller
 {
@@ -19,20 +19,32 @@ class TweetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Tweet $tweet)
     {
 
         // $tweets = Tweet::where('following_user_id', 1)->with('following')->first()->following->each->tweets;
 
-        $tweets = Tweet::latest()->get(); 
+        $tweets = Tweet::with('user','likes','comments','hashtags','retweet')->latest()->get(); 
+        // $retweetCount = Tweet::where('retweet','==', 1 )->count();
+        $retweetCount = auth()->user()->tweets()->where('id','==','original_tweet')->count();
+        // $retweetCount = Tweet::withCount('retweets')
+        // ->orderBy('created_at', 'desc')
+        // ->get();
+     
+        // $hashtags = Hashtag::latest()->get();
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
 
+        // $tweet_id = Tweet::select('id')->get()->pluck('id');
 
 
         return view('tweets.index',[
 
-            'tweets' => auth()->user()->timeline()
+            'tweets' => auth()->user()->timeline(),
 
-            // 'tweets' => $tweets
+            'retweetCount' => $retweetCount,
+
+            'hashtags' => $hashtags,
+
             
 
         ]);
@@ -71,6 +83,8 @@ class TweetController extends Controller
 
         $tweet = new Tweet;
 
+        $hashtags = $this->extractHashtags($request->input('body'));
+
         
         if ($request->hasFile('image')) {
             
@@ -87,6 +101,14 @@ class TweetController extends Controller
 
             $tweet->image = 'public/storage/imgs/'.$new_image;
 
+            $tweet->save();
+
+
+            foreach ($hashtags as $singleHashtag){
+                $hashtag = Hashtag::firstOrCreate(['slug' => $singleHashtag]);
+                $tweet->hashtags()->attach($hashtag);
+            }
+
         }
         else
         {
@@ -94,12 +116,20 @@ class TweetController extends Controller
     
             $tweet->body = $request->body;
 
+            $tweet->save();
+
+
+            foreach ($hashtags as $singleHashtag){
+                $hashtag = Hashtag::firstOrCreate(
+                    ['slug' => $singleHashtag]
+                );
+                $tweet->hashtags()->attach($hashtag);
+            }
+
         }    
 
 
-        $tweet->save();
 
-        // $flasher->addInfo('Tweet is Added');
         toast('Your Tweet is submited!','info');
 
 
@@ -182,80 +212,33 @@ class TweetController extends Controller
 
     public function single_tweet($tweet_id){
 
+        
+        $retweetCount = Tweet::where('original_tweet','=',1)->count();
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+
         $tweets  = Tweet::where('id',$tweet_id)->get();
 
 
-        return view('single_tweet',compact('tweets'));
+        return view('single_tweet',compact('tweets','retweetCount','hashtags'));
 
     }
 
-    public function storeLike(Tweet $tweet) {
 
-        // if($tweet->likesCount() == 0 || $tweet->likesCount() == 1 )
-        // {
-                
-        //     $tweet->like();
-        //     return redirect()->back();
+    public function extractHashtags($body)
+    {
+        preg_match_all("/(#\w+)/u", $body, $matches);
 
-        // }
-        // elseif($tweet->likesCount() == 1){
-
-        //     $this->destroyLike($tweet);   
-        //     return redirect()->back();
-        // }
-
-        // else{
-
-        //     $this->destroyLike($tweet);   
-        //     return redirect()->back();
-        // }
-        
-        // return redirect()->back();
-        $data = $tweet->like();
-        return response()->json($data, 200);
-
-    }
-
-    public function destroyLike(Tweet $tweet) {
-
-        $data = $tweet->unlike();
-        return response()->json($data, 200);
-        // return redirect()->back();
-
-    }
-
-    public function toggleLike(Tweet $tweet){
-
-        if($tweet->likesCount() == 1 || $tweet->likesCount() == 0){
-
-            $likeable_type	= 'App/Tweet';
-
-            $this->storeLike($tweet);
-            return redirect()->back();
-            
-        }
-        
-        else{
-            
-            $this->destroyLike($tweet);   
-            return redirect()->back();
-
+        if( $matches ){
+            $hashtagsValues = array_count_values($matches[0]);
+            $hashtags = array_keys($hashtagsValues);
         }
 
+        array_walk($hashtags, function(&$value){
+            $value = str_replace("#", "", $value);
+        });
 
+        return $hashtags;
     }
 
-    // public function toggle(Tweet $tweet){
 
-    //     current_user()->toggleLike($tweet);
-
-
-    // }
-
-    // public function storeLike(Tweet $tweet) {
-
-    //     $data = current_user()->toggleLike($tweet);
-    //     return response()->json($data, 200);
-
-    // }
 }

@@ -149,6 +149,7 @@
     
         <a href="{{route('profile',auth()->user())}}">Tweets</a>
         <a href="{{route('profile',auth()->user())}}">Tweets & Replies</a>
+        <a href="{{route('retweet_tweets',$user)}}">Retweets</a>
         <a href="{{route('media_tweets',$user)}}">Media</a>
         <a href="{{route('like_tweets',$user)}}">Likes</a>
 

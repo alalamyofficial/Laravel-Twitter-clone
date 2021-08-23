@@ -96,19 +96,13 @@
 
         <a href="{{route('single_tweet',$tweet->id)}}">
 
-            <img class="pb-3" src="{{asset($tweet->image)}}" alt="" style="width:400px">
+            <img class="pb-3" src="{{asset($tweet->image)}}" alt="" style="width:600px">
 
         </a> 
 
 
         <div class="flex justify-between">
             
-            <!-- <a href="{{route('single_tweet',$tweet->id)}}">
-                <div class="flex">
-                    <button><i class="far fa-comment"></i></i></button> 
-                    <p class="">10</p>
-                </div>
-            </a> -->
             <div class="flex">
                 <button class="" type="submit" data-toggle="collapse" data-target="#view-comments-{{$tweet->id}}" aria-expanded="false" aria-controls="collapseExample">
                     <i class="far fa-comment"></i></i>                
@@ -119,37 +113,45 @@
 
             <div class="flex">
                 <button><i class="fas fa-retweet"></i></button>
-                <p>10</p>
             </div>
 
 
-            <!-- <div class="flex">
+                <div class="flex">
 
-                <a href="#" class="like"><i class="far fa-thumbs-down"></i></a>
-                <p>10</p>
+                    @auth
+                        @if (!$tweet->likedBy(auth()->user()))
+                            <form action="{{ route('tweet.like', $tweet) }}" method="post" class="mr-1">
+                                @csrf
+                                <button type="submit" class="text-blue-500">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                    <a href="{{route('tweet.likes',$tweet->id)}}" 
+                                        >
+                                        {{ $tweet->likes->count() }}
+                                    </a> 
+                                
+                            </form>
+                        @else
+                            <form action="{{ route('tweet.like', $tweet) }}" method="post" class="mr-1">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-blue-500">
+                                    <i class="far fa-heart fill-current text-red-600"></i>
+                                </button>
+                                    <a href="{{route('tweet.likes',$tweet->id)}}" 
+                                        
+                                        data-id="{{ $tweet->id }}"
+                                    >
+                                        {{ $tweet->likes->count() }}
 
-            </div> -->
+                                    </a> 
+                            </form>
+                        @endif
+                    @endauth
 
-            <!-- <a href="tweet/like" class="like">Like</a>
-            <a href="#" class="like">Dislike</a> -->
-
-
-            <div class="flex">
-
-                <form action="{{route('tweets.likes.store',$tweet->id)}}" method="post">
-                @csrf
-                    <button type="submit"><i class="far fa-thumbs-up"></i></button>
-
-                </form>
-                <b>{{$tweet->likesCount()}} </b> 
+                
                 </div>    
 
-                <form action="{{route('tweets.likes.destroy',$tweet->id)}}" method="post">
-                @csrf
-                @method('delete')
-                    <button type="submit"><i class="far fa-thumbs-down"></i></button>
-
-                    </form> 
 
             </div>   
 

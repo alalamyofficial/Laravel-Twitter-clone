@@ -25,4 +25,9 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Tweet');
     }
+
+    public function retweet()
+    {
+        return $this->belongsTo('App\Retweet');
+    }
 }

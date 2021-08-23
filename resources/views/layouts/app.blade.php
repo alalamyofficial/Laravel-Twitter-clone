@@ -34,6 +34,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
+    <style>
+    
+    /* li a .active {
+        background-color: yellow;
+    } */
+
+    /* .currentLink {
+        color: #640200;
+        background-color: #000000;
+    } */
+
+    /* a:active,
+        a:focus {
+            text-decoration: none;
+            color: #009ce7;
+            outline: none;
+    } */
+
+
+    /* .links:active {
+        background-color: red;
+        color: white;
+    } */
+
+    
+    </style>
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -62,8 +89,9 @@
                         <div class="lg:w-32">
 
 
-
                             @include('sidebar_links')
+                        
+                            
                         
                         </div>
 
@@ -78,7 +106,7 @@
                     </div>
 
                     @if(auth()->check())
-                        <div class="lg:w-1/6 bg-white-100 rounded-lg p-4" style="max-width:700px">
+                        <div class="lg:w-1/6 bg-white-100 rounded-lg p-4" style="max-width:1000px">
 
 
 
@@ -100,32 +128,30 @@
 
      <script src="{{asset('js/like.js')}}"></script>   
      <script src="{{asset('js/upload.js')}}"></script>   
-     <!-- <script src="{{asset('js/emojies.js')}}"></script>    -->
      <script src="{{asset('js/fgEmojiPicker.js')}}"></script>   
      <script src="{{asset('js/emojionearea.min.js')}}"></script>   
-     <script src="{{asset('js/emojionearea.js')}}"></script>   
+     <script src="{{asset('js/emojionearea.js')}}"></script>
+     <script src="{{asset('js/emoji_icon.js')}}"></script>   
 
-    <script>
-    
-        new FgEmojiPicker({
-            
-            trigger: ["#btn"],
-            position: ["bottom", "right"],
-            dir: "js/",
-            emit(obj, triggerElement) {
-                    const emoji = obj.emoji;
-                    document.querySelector("textarea").value += emoji;
-            }
-        });
-
-
-    </script>
-
-
-    <script>
+     <script>
         var token = '{{ Session::token() }}';
+     </script>
 
-    </script>
+        <!-- <script>
+            $(document).ready(function() {
+                $(".links").click(function () {
+                    if(!$(this).hasClass('active'))
+                    {
+                        $(".links.active").removeClass("active");
+                        $(this).addClass("active");        
+                    }
+                });
+            });
+        </script> -->
+
+
+
+
 
     @include('sweetalert::alert')
 

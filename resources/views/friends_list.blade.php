@@ -1,16 +1,25 @@
-<div class="flex flex-col">
+<div class="flex flex-col" style="    
+    max-width: 1000px;
+    width: 315px;
+    margin-top: -23px;
+    ">
+
+    <div class="mr-3 mb-4">
+        @include('components.search')
+    </div><br>
 
 
-    <div class="mr-3">
-        @include('tweet_group')
-    </div>
+    <!-- is route -->
 
-    <br><br><hr><br>
+    @include('is_route')
 
 
-    <h3 class="font-bold text-xl mb-4">Following</h3>
+    <br><br>
 
-
+     <div class="bg-white p-3">
+     
+        <h3 class="font-bold text-xl mb-4">You might like</h3>
+        
         <ul style="width:300px">
 
             @forelse( auth()->user()->follows as $user )
@@ -40,6 +49,16 @@
             @endforelse
 
         </ul>
+
+     </div>
+               
+    <br><br>
+
+    <div class="bg-white p-3 mr-3">
+
+        @include('profiles.trends')
+
+    </div>
 
 
 </div>

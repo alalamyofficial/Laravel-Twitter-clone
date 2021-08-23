@@ -5,11 +5,13 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\CommentNotifications;
 use App\User;
 use DB;
 use App\Comment;
 use App\Tweet;
 use App\Like;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -169,6 +171,29 @@ class User extends Authenticatable
     //   }
     public function likes()
     {
-        return $this->hasMany('App\Like','likeable_id');
+        return $this->hasMany('App\Like');
+    }
+
+    // public function retweets()
+    // {
+    //     return $this->hasMany('App\Retweet');
+    // }
+
+
+    // public function retweets()
+    // {
+    //     return $this->hasMany(Retweet::class ,'source_tweet_id');
+    // }
+
+    public function retweedTweets()
+    {
+        return $this->belongsToMany('App\User', 'retweets', 'user_id', 'retweet_id')->withTimestamps();
+    }
+
+    public static function getCurrent()
+    {
+    	if (Auth::check())
+    		return User::find(Auth::id());
+    	return false;
     }
 }

@@ -1,15 +1,26 @@
-
-    <form action="/{{$user}}/like" method="post">
-        @csrf
-            <button type="submit"
-                                
-                class="bg-blue-500 rounded-lg shadow 
-                px-4 py-2 text-white text-xs"
-
-            >
-            {{auth()->user()->liking($user) ? 'UnLike' : 'Like'}}
-            
+@auth
+    @if (!$tweet->likedBy(auth()->user()))
+        <form action="{{ route('tweet.like', $tweet) }}" method="post" class="mr-1">
+            @csrf
+            <button type="submit" class="text-blue-500">
+                <i class="far fa-heart"></i>
             </button>
+                <a href="{{route('tweet.likes',$tweet->id)}}">
+                    {{ $tweet->likes->count() }}
+                </a> 
+            
+        </form>
+    @else
+        <form action="{{ route('tweet.like', $tweet) }}" method="post" class="mr-1">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="text-blue-500">
+                <i class="far fa-heart fill-current text-red-600"></i>
+            </button>
+                <a href="{{route('tweet.likes',$tweet->id)}}">                                
+                    {{ $tweet->likes->count() }}
 
-    </form>
-
+                </a> 
+        </form>
+    @endif
+@endauth

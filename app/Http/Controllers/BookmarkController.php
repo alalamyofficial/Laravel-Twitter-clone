@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use App\Hashtag;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class BookmarkController extends Controller
 {
@@ -18,12 +21,12 @@ class BookmarkController extends Controller
         if ($isBookmark == 0)
         {
             $user->bookmark_tweets()->attach($tweet);
-            // Toastr::success('tweets successfully added to your favorite list :)','Success');
-            return redirect()->back();
+                toast('Tweet Added To Bookmark Successfully','info');
+                return redirect()->back();
         } else {
             $user->bookmark_tweets()->detach($tweet);
-            // Toastr::success('tweets successfully removed form your favorite list :)','Success');
-            return redirect()->back();
+                toast('Tweet Removed From Bookmark Successfully','danger');
+                return redirect()->back();
         }
     }
 
@@ -36,7 +39,20 @@ class BookmarkController extends Controller
 
         // return view('bookmark_tweet',['bookmarks' => $bookmarks]);
 
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+
         $tweets = Auth::user()->bookmark_tweets;
-        return view('bookmark_tweet',compact('tweets'));
+        return view('bookmark_tweet',compact('tweets','hashtags'));
+
+
     }
+
+    // public function destroy($id){
+
+    //     $user = Auth::user();
+    //     $bookmark = $user->bookmark_tweets()->where('tweet_id',$id);
+    //     $bookmark->destroy();
+    //     return redirect()->back();
+
+    // }
 }

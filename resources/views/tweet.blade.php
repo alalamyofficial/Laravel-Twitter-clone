@@ -1,8 +1,21 @@
+<div class="p-4 bg-white">
+
+    @if ($tweet->owner_tweet_id != Null)
+        <div class="flex">
+            <span class="badge badge-success">Retweeted</span> 
+
+        </div>
+            from (ID => {{urldecode('%40')}}{{$tweet->owner_tweet_id}})
+    @else
+        <div></div> 
+
+    @endif
+
+</div>
 
 
-<div class="flex p-4 {{$loop->last ? '' : 'border-b border-b-gray-400' }} ">
+<div class="flex p-4 bg-white {{$loop->last ? '' : 'border-b border-b-gray-400' }} ">
 
-     
         <div class="mr-3 flex-shrink-0">
 
             <a href="{{route('profile',$tweet->user)}}">
@@ -20,6 +33,7 @@
 
         <h5 class="font-bold mb-4">
             
+
             <div class="flex justify-between"> 
                 <a href="{{route('profile',$tweet->user)}}" class="mr-5">
                 <!-- if getRouteKey not found will e ==>  $tweet->user->name , this is called forign key-->
@@ -33,7 +47,7 @@
                     </a>    
                 </p>
 
-                <div class="btn-group">
+                <div class="btn-group" style="position:relative; left: 96px; top: -62px;">
                     <button type="button" class="btn dropdown-toggle dropdown-toggle-split ml-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
@@ -83,6 +97,9 @@
             </div>
         </h5>
 
+            <br>
+
+
             
             <p class="text-sm mb-3">
 
@@ -94,60 +111,37 @@
             
             <a href="{{route('single_tweet',$tweet->id)}}">
 
-                <img class="pb-3" src="{{asset($tweet->image)}}" alt="" style="width:400px">
+                <img class="pb-3" src="{{asset($tweet->image)}}" alt="" style="width:500px">
 
             </a> 
 
 
             <div class="flex justify-between">
             
-                <!-- <a href="{{route('single_tweet',$tweet->id)}}">
-                    <div class="flex">
-                        <button><i class="far fa-comment"></i></i></button> 
-                        <p class="">10</p>
-                    </div>
-                </a> -->
-                <div class="flex">
+                <div class="">
                     <button class="" type="submit" data-toggle="collapse" data-target="#view-comments-{{$tweet->id}}" aria-expanded="false" aria-controls="collapseExample">
                         <i class="far fa-comment"></i></i>                
                     </button> 
-                    <p>{{count($tweet->comments)}}</p>
+                        <span>{{count($tweet->comments)}}</span>
                                 
                 </div>
 
-                <div class="flex">
-                    <button><i class="fas fa-retweet"></i></button>
-                    <p>10</p>
-                </div>
+                @if($tweet->retweet == 0)
 
-
-                <!-- <div class="flex">
-
-                    <a href="#" class="like"><i class="far fa-thumbs-down"></i></a>
-                    <p>10</p>
-
-                </div> -->
-
-                <!-- <a href="tweet/like" class="like">Like</a>
-                <a href="#" class="like">Dislike</a> -->
-
-
-                <div class="flex">
-
-                    <form action="{{route('tweets.likes.store',$tweet->id)}}" method="post">
-                    @csrf
-                        <button type="submit"><i class="far fa-thumbs-up"></i></button>
-    
+                    <form action="{{route('retweet.create', $tweet->id)}}" method="get">
+                        <div class="">   
+                            <button><i class="fas fa-retweet"></i></button>
+                        </div> 
                     </form>
-                    <b>{{$tweet->likesCount()}} </b> 
-                </div>    
+                @endif
+    
+                <!-- <i class="fas fa-retweet" ria-hidden="true"></i> {{$tweet->retweets_total}} -->
 
-                <form action="{{route('tweets.likes.destroy',$tweet->id)}}" method="post">
-                @csrf
-                @method('delete')
-                    <button type="submit"><i class="far fa-thumbs-down"></i></button>
 
-                </form> 
+                @include('components.like_button')
+
+                <!-- <span>{{ $tweet->likes->count() }} {{ Str::plural('like', $tweet->likes->count()) }}</span> -->
+
 
             </div>   
 
@@ -186,3 +180,5 @@
 
 
 </div>
+
+

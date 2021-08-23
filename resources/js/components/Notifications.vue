@@ -79,15 +79,21 @@ export default {
             500
         );
     },
+    props: ['user'],
     data() {
         return {
-            unreadnotifications: {}
+            unreadnotifications: {},
+            // user:''
         };
     },
     methods: {
         getNotifications() {
             axios
-                .get("unreadNotifications")
+                .get("/unreadNotifications",{
+                    params: {
+                        user: this.user
+                    }
+                })
                 .then(response => {
                     this.unreadnotifications = response.data;
                 })
@@ -97,7 +103,11 @@ export default {
         },
         markAsRead() {
             axios
-                .get("markAsRead")
+                .get("/markAsRead",{
+                    params: {
+                        user: this.user
+                    }
+                })
                 .then(response => {
                     location.reload();
                 })

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Like;
-
+use App\Retweet;
 
 class Tweet extends Model 
 {
@@ -13,9 +13,10 @@ class Tweet extends Model
     use HasLikes;
 
 
-    protected $fillable = ['user_id','body','image','likeable_id'];
+    protected $fillable = ['user_id','body','image','likeable_id','retweet'];
 
-    
+    protected $table = 'tweets';
+
 
     public function user(){
 
@@ -42,8 +43,56 @@ class Tweet extends Model
 
     public function likes()
     {
-        $likeable_type	= 'App/Tweet';
-        return $this->hasMany('App\Like','likeable_id');
+        return $this->hasMany('App\Like');
     }
+
+    public function hashtags()
+    {
+        return $this->belongsToMany(Hashtag::class,'tweet_hashtags','tweet_id');
+    }
+
+    // public function retweets()
+    // {
+    //     return $this->hasMany(Retweet::class ,'source_tweet_id');
+    // }
+
+    // public function source()
+    // {
+    //     return $this->hasOne('App\Retweet','tweet_id');
+    // }
+
+    // public function retweetBy(User $user)
+    // {
+    //     $retweet = Retweet::where('source_tweet_id', '=', $this->id)
+    //         ->join('tweets', function($join)
+    //         {
+    //             $join->on('tweets.id', '=', 'retweets.tweet_id');
+    //         })
+    //         ->join('users', function($join)
+    //         {
+    //             $join->on('users.id', '=', 'tweets.user_id');
+    //         })->get();
+
+    //     if($retweet->isEmpty())
+    //         return false;
+    //     return $retweet->first();
+    // }
+
+    // public function userRetweeted()
+    // {
+    //     return $this->belongsToMany('App\User', 'retweets', 'tweet_id', 'user_id')->withTimestamps();
+    // }
+
+    public function retweet() {
+        // return $this->retweet;
+        return $this->hasMany(Retweet::class);
+
+    }
+
+    public function likedBy(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
+    }
+
 
 }

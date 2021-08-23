@@ -17,9 +17,14 @@ class CreateTweetsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('image')->nullable();
-            $table->text('body')->nullable();
-            // $table->text('bookmark')->default(0);
+            $table->text('body');
+            $table->integer('owner_tweet_id')->nullable();
+            $table->integer('original_tweet')->nullable();
+            $table->boolean('retweet')->default(false);
             $table->timestamps();
+
+            $table->foreign("user_id")->references('id')
+                ->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
