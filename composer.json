@@ -21,6 +21,7 @@
         "php-flasher/flasher-noty-laravel": "^0.4.8",
         "pusher/pusher-php-server": "3.4@dev",
         "realrashid/sweet-alert": "^4.0",
+        "shetabit/visitor": "^3.1",
         "spatie/emoji": "^2.3"
     },
     "require-dev": {

@@ -24,7 +24,7 @@
 
     @csrf
 
-    <textarea  name="body" id="example1" data-emoji-input="unicode" data-emojiable="true" class="w-full" placeholder="What's up doc ?"></textarea>
+    <textarea name="body" id="example1" data-emoji-input="unicode" data-emojiable="true" class="w-full" placeholder="What's up doc ?"></textarea>
 
 
 

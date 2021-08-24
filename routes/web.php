@@ -106,7 +106,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/retweet/create/{id}','RetweetController@store')->name('retweet.create');
     Route::get('/retweet/destroy/{id}', 'RetweetController@noRetweet');
 
-<<<<<<< HEAD
     Route::get('/retweet/all', 'RetweetController@all_retweets');
 
     //list
@@ -114,17 +113,60 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('list','ListsController@store')->name('list.store');
     Route::delete('list/delete/{id}','ListsController@destroy')->name('list.delete');
 
-
-});
-
-//admin
-Route::get('admin/dashboard','AdminController@dashboard')->name('admin.dashboard');
-Route::get('admin/tweets','AdminController@all_tweets')->name('admin.tweets');
-Route::delete('admin/tweets/destroy/{id}','AdminController@remove_tweet')->name('admin.tweets.destroy');
-=======
     //hashtags
     Route::get('/hashtag/{hashtag}', 'HashtagController@index')->name('hashtag');
 
 });
 
->>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
+//admin
+
+//dasboard
+Route::get('admin/dashboard','AdminController@dashboard')->name('admin.dashboard');
+
+//tweets
+Route::get('admin/tweets','AdminController@all_tweets')->name('admin.tweets');
+Route::delete('admin/tweets/destroy/{id}','AdminController@remove_tweet')->name('admin.tweets.destroy');
+
+//users
+Route::get('admin/users','AdminController@all_users')->name('admin.users');
+Route::delete('admin/user/destroy/{id}','AdminController@remove_user')->name('admin.user.destroy');
+
+
+//bookmarks
+Route::get('admin/bookmarks','AdminController@all_bookmarks')->name('admin.bookmarks');
+Route::delete('admin/bookmark/destroy/{id}','AdminController@remove_bookmark')->name('admin.bookmark.destroy');
+
+
+//tweets
+Route::get('admin/retweets','AdminController@all_retweets')->name('admin.retweets');
+Route::delete('admin/retweets/destroy/{id}','AdminController@remove_retweet')->name('admin.retweet.destroy');
+
+
+//lists
+Route::get('admin/lists','AdminController@all_lists')->name('admin.lists');
+Route::delete('admin/list/destroy/{id}','AdminController@remove_list')->name('admin.list.destroy');
+
+
+//hashtags
+Route::get('admin/hashtags','AdminController@all_hashtags')->name('admin.hashtags');
+Route::delete('admin/hashtag/destroy/{id}','AdminController@remove_hashtag')->name('admin.hashtag.destroy');
+
+//comments
+Route::get('admin/comments','AdminController@all_comments')->name('admin.comments');
+Route::delete('admin/comment/destroy/{id}','AdminController@remove_comment')->name('admin.comment.destroy');
+
+//friends
+Route::get('admin/friends','AdminController@friends')->name('admin.friends');
+
+
+//likes
+Route::get('admin/likes','AdminController@all_likes')->name('admin.likes');
+Route::delete('admin/like/destroy/{id}','AdminController@remove_like')->name('admin.like.destroy');
+
+//visits
+Route::get('admin/users/visits','AdminController@all_views')->name('admin.users.visits');
+
+//messages
+Route::get('admin/users/messages','AdminController@all_messages')->name('admin.users.messages');
+Route::delete('admin/message/destroy/{id}','AdminController@remove_message')->name('admin.message.destroy');
+

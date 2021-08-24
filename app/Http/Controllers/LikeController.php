@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Tweet;
 use App\Hashtag;
+use Shetabit\Visitor\Traits\Visitor;
 
 
 class LikeController extends Controller
@@ -23,6 +24,9 @@ class LikeController extends Controller
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
         $tweet_id = Tweet::findOrFail($id);
         $tweet_likes = $tweet_id->likes()->get();
+
+        visitor()->visit();
+
 
         return view('likes.index',compact('tweet_likes','retweetCount','hashtags'));
     }          

@@ -202,6 +202,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Retweet');
     }
 
+    public function lists()
+    {
+        return $this->hasMany('App\Lists');
+    }
+
 
     public function retweeted_tweets()
     {

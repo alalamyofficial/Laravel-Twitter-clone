@@ -1,4 +1,3 @@
-
 <form action="{{route('comment.store',$tweet->id)}}" method="post">
 @csrf
     <div class="collapse" id="view-comments-{{$tweet->id}}">

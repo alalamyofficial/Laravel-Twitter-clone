@@ -9,6 +9,7 @@ use App\Tweet;
 use App\Hashtag;
 use DB;
 use Auth;
+use Shetabit\Visitor\Traits\Visitor;
 
 
 class FollowController extends Controller
@@ -27,9 +28,13 @@ class FollowController extends Controller
       $retweetCount = Tweet::where('original_tweet','=',1)->count();
       $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
 
-        $user_s = User::findOrFail($id);
-        $followings = $user_s->follows()->get();
-        return view('followers.following',[
+      $user_s = User::findOrFail($id);
+      $followings = $user_s->follows()->get();
+      
+      visitor()->visit();
+
+      
+      return view('followers.following',[
           'followings' => $followings,
           'retweetCount'=> $retweetCount,
           'hashtags' => $hashtags
@@ -44,6 +49,10 @@ class FollowController extends Controller
 
       $user_s = User::findOrFail($id);
       $followers = $user_s->user_followers()->get();	
+      
+      visitor()->visit();
+
+
       return view('followers.followers',[
             'followers' => $followers,
             'retweetCount'=> $retweetCount,

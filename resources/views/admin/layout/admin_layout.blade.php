@@ -28,7 +28,7 @@
     <div class="sidebar-header">
         <div class="d-flex justify-content-between">
             <div class="logo">
-                <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                <a href="{{route('admin.dashboard')}}"><img src="{{asset('admin/assets/images/logo/logo.png')}}" alt="Logo" srcset=""></a>
             </div>
             <div class="toggler">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -52,81 +52,82 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{route('admin.retweets')}}" class='sidebar-link'>
                     <i class="fa fa-retweet"></i>
                     <span>Retweets</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{route('admin.comments')}}" class='sidebar-link'>
+                    <i class="fas fa-comments"></i>
+                    <span>Comments</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a href="{{route('admin.bookmarks')}}" class='sidebar-link'>
                     <i class="fa fa-bookmark"></i>
                     <span>Bookmarks</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{route('admin.users')}}" class='sidebar-link'>
                     <i class="fa fa-users"></i>
                     <span>Users</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{route('admin.users.messages')}}" class='sidebar-link'>
                     <i class="fa fa-envelope"></i>
                     <span>Messages</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{route('admin.lists')}}" class='sidebar-link'>
                     <i class="fa fa-clipboard-list"></i>
                     <span>Lists</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{route('admin.hashtags')}}" class='sidebar-link'>
                     <i class="fa fa-hashtag"></i>
                     <span>Hashtags</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{route('admin.friends')}}" class='sidebar-link'>
                     <i class="fa fa-user"></i>
                     <span>Follows & Followings</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
-                    <i class="fa fa-poll-h"></i>
-                    <span>Trends</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
-                    <i class="fa fa-bell"></i>
-                    <span>Notifications</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{route('admin.likes')}}" class='sidebar-link'>
                     <i class="fa fa-thumbs-up"></i>
                     <span>Likes</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{route('admin.users.visits')}}" class='sidebar-link'>
                     <i class="fa fa-eye"></i>
                     <span>Views</span>
                 </a>
             </li>
+
+            <li class="sidebar-item">
+                <a href="index.html" class='sidebar-link'>
+                    <i class="bi bi-patch-check-fill"></i>
+                    <span>Verifiy Sign Requests</span>
+                </a>
+            </li>
+
 
             <br><br>
             

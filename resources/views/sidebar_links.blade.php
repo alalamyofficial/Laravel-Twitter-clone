@@ -8,11 +8,7 @@
         <a class="font-bold text-lg mb-4 block" href="{{route('explore.show')}}"><i class="fas fa-hashtag mr-3"></i> Explore</a>
     </li>
 
-<<<<<<< HEAD
     <li class="links">
-=======
-    <li>
->>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
         <a class="font-bold text-lg mb-4 block">
         <div class="flex">
             <notifications :user="{{Auth::user()->id}}"></notifications>

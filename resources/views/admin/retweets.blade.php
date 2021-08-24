@@ -6,7 +6,7 @@
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <h3>Tweets Datatable <span class="badge bg-light-primary">Count : {{count($tweets)}}</span></h3>
+            <h3>Retweets Datatable  <span class="badge bg-light-primary">Count : {{count($retweets)}}</span></h3>
         </div>
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -19,7 +19,7 @@
                             <a href="#" class="dataTable-sorter">ID</a>
                         </th>
                         <th data-sortable="" style="width: 15.0673%;">
-                            <a href="#" class="dataTable-sorter">Tweet Author</a>
+                            <a href="#" class="dataTable-sorter">Retweet Author</a>
                         </th>
                         <th data-sortable="" style="width: 20.2572%;">
                             <a href="#" class="dataTable-sorter">Body</a>
@@ -45,7 +45,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($tweets as $tweet)
+                    @foreach($retweets as $tweet)
                     <tr>
                         <td>{{$tweet->id}}</td>
                         <td>{{$tweet->user->username}}</td>
@@ -92,7 +92,7 @@
                         <td>{{$tweet->created_at->diffForHumans()}}</td>
 
                         <td>
-                            <form action="{{route('admin.tweets.destroy',$tweet->id)}}" method="post">
+                            <form action="{{route('admin.retweet.destroy',$tweet->id)}}" method="post">
                             @csrf
                             @method('delete')
                                 <button class="btn btn-sm btn-danger">
@@ -108,6 +108,6 @@
     </div>
 </section>
 
-    {{$tweets->links()}}
+    {{$retweets->links()}}
 
 @endsection

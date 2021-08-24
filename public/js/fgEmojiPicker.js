@@ -261,11 +261,7 @@ const FgEmojiPicker = function (options) {
                 ${this.selectors.emojiPicker} {
                     /* position: fixed; */
                     position: absolute;
-<<<<<<< HEAD
                     z-index: 1999;
-=======
-                    z-index: 999;
->>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
                     width: 300px;
                     min-height: 360px;
                     background-color: white;

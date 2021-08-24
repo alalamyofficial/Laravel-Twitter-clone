@@ -20,8 +20,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Profile Views</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                    <h6 class="text-muted font-semibold">Site Views</h6>
+                                    <h6 class="font-extrabold mb-0">{{$view_count}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Saved Tweets</h6>
+                                    <h6 class="text-muted font-semibold"><small>Saved Tweets</small></h6>
                                     <h6 class="font-extrabold mb-0">{{count($bookmark_tweets)}}</h6>
                                 </div>
                             </div>
@@ -209,40 +209,22 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h4>Recent Messages</h4>
+                    <h4>Recent Users</h4>
                 </div>
                 <div class="card-content pb-4">
+                    @foreach($users as $user)
                     <div class="recent-message d-flex px-4 py-3">
                         <div class="avatar avatar-lg">
-                            <img src="assets/images/faces/4.jpg">
+                            <img src="{{asset($user->avatar)}}">
                         </div>
                         <div class="name ms-4">
-                            <h5 class="mb-1">Hank Schrader</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                            <h5 class="mb-1"><small>{{$user->name}}</small></h5>
+                            <h6 class="text-muted mb-0">
+                                <i class="fa fa-at"></i><small>{{$user->username}}</small>
+                            </h6>
                         </div>
                     </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="assets/images/faces/5.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Dean Winchester</h5>
-                            <h6 class="text-muted mb-0">@imdean</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="assets/images/faces/1.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
-                        </div>
-                    </div>
-                    <div class="px-4">
-                        <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
-                            Conversation</button>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="card">

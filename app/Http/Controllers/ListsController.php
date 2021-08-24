@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Lists;
 use Illuminate\Http\Request;
 use App\Hashtag;
+use Shetabit\Visitor\Traits\Visitor;
+
 
 class ListsController extends Controller
 {
@@ -27,6 +29,8 @@ class ListsController extends Controller
     {
         $tasks = Lists::latest()->paginate(10);
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+
+        visitor()->visit();
 
         return view('lists',compact('tasks','hashtags'));
 

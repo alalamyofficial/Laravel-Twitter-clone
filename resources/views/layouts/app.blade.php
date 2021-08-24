@@ -133,65 +133,9 @@
      <script src="{{asset('js/emojionearea.js')}}"></script>
      <script src="{{asset('js/emoji_icon.js')}}"></script>   
 
-<<<<<<< HEAD
      <script>
         var token = '{{ Session::token() }}';
      </script>
-
-        <!-- <script>
-            $(document).ready(function() {
-                $(".links").click(function () {
-                    if(!$(this).hasClass('active'))
-                    {
-                        $(".links.active").removeClass("active");
-                        $(this).addClass("active");        
-                    }
-                });
-            });
-        </script> -->
-=======
-    <script>
-    
-    window.onload = function em(){ 
-
-    
-        new FgEmojiPicker({
-            
-            trigger: ["#btn"],
-            position: ["bottom", "right"],
-            dir: "js/",
-            emit(obj, triggerElement) {
-                    const emoji = obj.emoji;
-                    document.querySelector("#example1").value += emoji;
-            }
-            
-        });
-
-    };
-
-
->>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
-
-
-     <script>
-     
-        function em1(){ 
-
-        new FgEmojiPicker({
-                
-                trigger: ["#btn1"],
-                position: ["bottom", "right"],
-                dir: "js/",
-                emit(obj, triggerElement) {
-                        const emoji = obj.emoji;
-                        document.querySelector("#example2").value += emoji;
-                }
-                
-            });
-        };    
-     
-     </script>   
-
 
 
 

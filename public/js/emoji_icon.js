@@ -1,4 +1,3 @@
-document.addEventListener("turbolinks:load", function() {
     window.onload = function em(){   
         new FgEmojiPicker({
             
@@ -13,7 +12,7 @@ document.addEventListener("turbolinks:load", function() {
         });
     
     };
-})
+
 
     function em1(){ 
     

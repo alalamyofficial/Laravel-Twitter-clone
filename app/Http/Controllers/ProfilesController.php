@@ -10,6 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Notifications\CommentNotifications;
 use App\Retweet;
 use App\Hashtag;
+use Shetabit\Visitor\Traits\Visitor;
 
 class ProfilesController extends Controller
 {
@@ -19,6 +20,7 @@ class ProfilesController extends Controller
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
         $mytweet = $user->tweets()->where('image' , '!=' , NULL )->paginate(6);
 
+        visitor()->visit();
 
         return view('profiles.show')
         ->with('user',$user)
@@ -35,6 +37,9 @@ class ProfilesController extends Controller
         $retweetCount = Tweet::where('original_tweet','=',1)->count();
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
         $this->authorize('edit',$user);
+        
+        visitor()->visit();
+
         return view('profiles.edit',compact('user','retweetCount','hashtags'));
 
     }
@@ -107,6 +112,7 @@ class ProfilesController extends Controller
         toast('Your Profile has been edited!','info');
 
 
+
         return redirect()->route('profile',compact('user'));
 
     }
@@ -123,6 +129,8 @@ class ProfilesController extends Controller
         
         $retweetCount = Tweet::where('original_tweet','=',1)->count();
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+        
+        visitor()->visit();
 
         return view('profiles.tweets.media')
         ->with('user',$user)
@@ -139,6 +147,8 @@ class ProfilesController extends Controller
         // $tweet = Tweet::find($id);
         $retweetCount = Tweet::where('original_tweet','=',1)->count();
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+
+        visitor()->visit();
 
         return view('profiles.tweets.like')
         ->with('user',$user)
@@ -161,10 +171,11 @@ class ProfilesController extends Controller
         $retweetCount = Tweet::where('original_tweet','=',1)->count();
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
 
+        visitor()->visit();
+
         return view('tweet_group')
         ->with('user',$user)
         ->with('tweets',$user->tweets()->where('image' , '!=' , NULL )
-<<<<<<< HEAD
         ->with('retweetCount',$retweetCount)
         ->orderBy('created_at','desc')->take(6)->get())
         ->with('hashtags',$hashtags);
@@ -177,6 +188,8 @@ class ProfilesController extends Controller
 
         // $retweetCount = Tweet::where('original_tweet','=',1)->count();
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+        
+        visitor()->visit();
 
         return view('profiles.tweets.retweet')
         ->with('user',$user)
@@ -204,13 +217,9 @@ class ProfilesController extends Controller
 
     public function all_notifications(){
 
+        visitor()->visit();
 
         return view('notifications');
-=======
-        ->orderBy('created_at','desc')->take(6)->get()
-
-        );
->>>>>>> 6e33710f9b18bab3940a45763fdb637c936e7b1d
 
     }
 }

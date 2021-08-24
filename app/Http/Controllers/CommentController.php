@@ -9,6 +9,8 @@ use App\Tweet;
 use Auth;
 use App\Notifications\CommentNotifications;
 use Illuminate\Support\Facades\Input;
+use Shetabit\Visitor\Traits\Visitor;
+
 
 class CommentController extends Controller
 {
@@ -82,6 +84,8 @@ class CommentController extends Controller
 
     public function getComments(Tweet $tweet)
     {
+        visitor()->visit();
+
         return response()->json($tweet->comments()->with('user')->latest()->get());
     }
 
