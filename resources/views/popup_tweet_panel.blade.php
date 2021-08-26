@@ -36,7 +36,6 @@
             ></i>
         </button>
 
-        <!-- <button class="light" style="border:2px solid #6e94ea; padding:3px">Gif</button> -->
         <!-- upload image button -->
         <label class="btn btn-default btn-file">
             <i id="filePhoto" class="fas fa-upload fa-2x" style="color:#6e94ea"></i> 

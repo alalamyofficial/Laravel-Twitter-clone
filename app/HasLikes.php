@@ -49,9 +49,5 @@ trait HasLikes
 
     }
 
-    // public function toggleLike(Tweet $tweet)
-    // {
-    //     return $this->isLiked($like) ? $this->unlike() : $this->like();
-    // }
 
 }

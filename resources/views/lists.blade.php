@@ -21,7 +21,6 @@
 <ul class="list-group">
   @foreach($tasks as $task)
 
-    <!-- <div class="row justify-content-around"> -->
       <li class="list-group-item">{{$task->task}}
 
 
@@ -57,7 +56,6 @@
           <span class="badge badge-primary">{{$task->created_at->diffForHumans()}}</span>
         </span>
       </li>
-    <!-- </div> -->
   @endforeach  
 </ul>
 

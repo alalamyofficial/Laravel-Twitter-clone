@@ -19,6 +19,16 @@
 @endif
 
 
+@if(Route::is('user.followings',auth()->user()))
+    @include('news')   
+@endif
+
+
+@if(Route::is('user.followers',auth()->user()))
+    @include('news')   
+@endif
+
+
 @if(Route::is('profile',auth()->user()) )
     @include('grid_photos')   
 @endif

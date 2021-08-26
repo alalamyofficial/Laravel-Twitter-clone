@@ -44,7 +44,6 @@
 
                 <h5 class="font-bold mb-4">
                     
-
                     <div class="flex justify-between"> 
                         <a href="{{route('profile',$tweet->user)}}" class="mr-5">
                         <!-- if getRouteKey not found will e ==>  $tweet->user->name , this is called forign key-->
@@ -152,10 +151,7 @@
                         @include('components.like_button')
 
 
-            <!-- <span>{{ $tweet->likes->count() }} {{ Str::plural('like', $tweet->likes->count()) }}</span> -->
-
-
-        </div>     
+            </div>     
 
 
 

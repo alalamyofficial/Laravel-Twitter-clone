@@ -28,7 +28,6 @@ class ProfilesController extends Controller
         ->with('retweetCount',$retweetCount)
         ->with('hashtags',$hashtags)
         ->with('mytweet',$mytweet);
-        // ->with('tweets',auth()->user()->timeline());
 
     }
 
@@ -144,7 +143,6 @@ class ProfilesController extends Controller
 
     public function like_tweets(User $user){
         
-        // $tweet = Tweet::find($id);
         $retweetCount = Tweet::where('original_tweet','=',1)->count();
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
 
@@ -182,7 +180,6 @@ class ProfilesController extends Controller
 
     public function retweets(User $user){
 
-        // $retweetCount = Tweet::where('original_tweet','=',1)->count();
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
         
         visitor()->visit();
@@ -190,7 +187,6 @@ class ProfilesController extends Controller
         return view('profiles.tweets.retweet')
         ->with('user',$user)
         ->with('tweets',$user->tweets()->where('retweet' , '=' , 1)
-        // ->with('retweetCount',$retweetCount)
         ->paginate(10))
         ->with('hashtags',$hashtags);
 
@@ -205,7 +201,6 @@ class ProfilesController extends Controller
 
     public function markAsRead()
     {
-        // $users = User::user()->get();
 
         Auth::user()->notifications->markAsRead();
         return response()->json('success');

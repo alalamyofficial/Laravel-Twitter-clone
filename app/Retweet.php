@@ -12,21 +12,9 @@ class Retweet extends Model
 
     protected $table = 'retweets';
 
-    // protected $fillable = ['user_id','source_tweet_id','tweet_id'];
 
     protected $guarded = array('id');
 
-
-    // public function user(){
-
-    //     return $this->belongsTo(User::class,'user_id');
-
-    // }
-
-    // public function tweet()
-    // {
-    //     return $this->belongsTo('App\Tweet','tweet_id');
-    // }
 
     public function source()
     {

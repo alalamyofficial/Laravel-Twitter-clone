@@ -35,14 +35,12 @@
         <ul class="list-group">
         @foreach($orders as $order)
 
-            <!-- <div class="row justify-content-around"> -->
             <div>
                 <li class="list-group-item">{{$order->order_message}} <br>
                 <span class="badge badge-primary">{{$order->created_at->diffForHumans()}}</span>
                 </li>
                
             </div><br>
-            <!-- </div> -->
         @endforeach  
         </ul>
 

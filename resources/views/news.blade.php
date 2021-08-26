@@ -32,7 +32,6 @@
         
         $apiResult = json_decode($json, true);
         
-        //   print_r($apiResult);
 
         foreach($apiResult['articles'] as $data){
             

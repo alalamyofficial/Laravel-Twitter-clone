@@ -14,32 +14,7 @@ use Shetabit\Visitor\Traits\Visitor;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -87,7 +62,6 @@ class CommentController extends Controller
 
     public function addComment(Request $request , $tweet){
 
-        // return $request->all();
 
         $this->validate($request,[
             'comment' => 'required'
@@ -118,24 +92,6 @@ class CommentController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
-    {
-        
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Comment $comment)
     {
         //
@@ -178,7 +134,6 @@ class CommentController extends Controller
     }
 
     public function all_notifications(){
-
 
         return view('notifications');
 

@@ -51,40 +51,8 @@ class Tweet extends Model
         return $this->belongsToMany(Hashtag::class,'tweet_hashtags','tweet_id');
     }
 
-    // public function retweets()
-    // {
-    //     return $this->hasMany(Retweet::class ,'source_tweet_id');
-    // }
-
-    // public function source()
-    // {
-    //     return $this->hasOne('App\Retweet','tweet_id');
-    // }
-
-    // public function retweetBy(User $user)
-    // {
-    //     $retweet = Retweet::where('source_tweet_id', '=', $this->id)
-    //         ->join('tweets', function($join)
-    //         {
-    //             $join->on('tweets.id', '=', 'retweets.tweet_id');
-    //         })
-    //         ->join('users', function($join)
-    //         {
-    //             $join->on('users.id', '=', 'tweets.user_id');
-    //         })->get();
-
-    //     if($retweet->isEmpty())
-    //         return false;
-    //     return $retweet->first();
-    // }
-
-    // public function userRetweeted()
-    // {
-    //     return $this->belongsToMany('App\User', 'retweets', 'tweet_id', 'user_id')->withTimestamps();
-    // }
 
     public function retweet() {
-        // return $this->retweet;
         return $this->hasMany(Retweet::class);
 
     }

@@ -137,12 +137,9 @@
                     </form>
                 @endif
     
-                <!-- <i class="fas fa-retweet" ria-hidden="true"></i> {{$tweet->retweets_total}} -->
-
 
                 @include('components.like_button')
 
-                <!-- <span>{{ $tweet->likes->count() }} {{ Str::plural('like', $tweet->likes->count()) }}</span> -->
 
 
             </div>   

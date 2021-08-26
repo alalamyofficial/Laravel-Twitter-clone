@@ -34,7 +34,6 @@ class HashtagController extends Controller
             'tweetsHashtags'=> $tweetsHashtags,
             'hashtag_count' => $hashtag_count 
         ]);
-        // return redirect()->back();
     }
 
     public function scopeShowTopHashtag($query)

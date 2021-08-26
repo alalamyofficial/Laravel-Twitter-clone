@@ -10,21 +10,7 @@ use Shetabit\Visitor\Traits\Visitor;
 
 class ListsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $tasks = Lists::where('user_id','=',Auth::user()->id)->latest()->paginate(10);
@@ -36,12 +22,6 @@ class ListsController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -60,23 +40,7 @@ class ListsController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Lists  $lists
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Lists $lists)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Lists  $lists
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Lists $lists,$id)
     {
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
@@ -85,13 +49,6 @@ class ListsController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Lists  $lists
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Lists $lists, $id)
     {
         $this->validate($request,[
@@ -116,12 +73,6 @@ class ListsController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Lists  $lists
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Lists $lists,$id)
     {
         

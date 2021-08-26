@@ -29,7 +29,6 @@ class BlueVerifiyController extends Controller
         
         $this->validate($request,[
 
-            // 'user_id' => 'required',
             'order_message' => 'required'
 
         ]);

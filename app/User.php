@@ -68,16 +68,11 @@ class User extends Authenticatable
 
     }
 
-    // public function likes(){
 
-    //     return $this->hasMany(Like::class);
-
-    // }
-
-      public function likedTweets()
-      {
-          return $this->belongsToMany(Tweet::class);
-      }  
+    public function likedTweets()
+    {
+        return $this->belongsToMany(Tweet::class);
+    }  
 
 
 
@@ -90,52 +85,14 @@ class User extends Authenticatable
             ->orderByDesc('id')
             ->paginate(50);
 
-        // return Tweet::all();
-
-        // return DB::table('tweets')
-        // ->select('users.email', 'users.name', 'tweets.body')
-        // ->leftJoin('follows', 'tweets.user_id', '=', 'follows.following_user_id')
-        // ->leftJoin('users', 'tweets.user_id', '=', 'users.id')
-        // ->where('follows.user_id', $this->id)
-        // ->orWhere('tweets.user_id', $this->id)
-        // ->latest('tweets.created_at')
-        // ->get();
-
-        // return Tweet::where('user_id', $this->id)
-        // ->orWhereHas('user', function ($query) {
-        //     $query->whereHas('follows', function ($query) {
-        //         $query->where('user_id', $this->id);
-        //     });
-        // })
-        // ->latest()
-        // ->get();
-
     }
 
-    public function ourtimeline(){
-
-        $following_id = $this->follows()->pluck('id');
-
-        return Tweet::whereIn('user_id', $following_id)
-        ->latest()->paginate(50);
-        // ->orderBy('user_id', 'ASC')->get();
-
-
-
-        // return Tweet::whereIn('user_id',$friends)
-        // ->orWhere('user_id',$this->id)->latest()->paginate(50);
-
-    }
 
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
     }
 
-    // public function setPasswordAttribute($password)
-    // {
-    //     $this->attributes['password'] = \Hash::make($password);
-    // }
     
 
     public function comments()
@@ -143,47 +100,20 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
-    // public function likes()
-    // {
-    //     return $this->belongsToMany('App\Tweet', 'likes', 'user_id', 'tweet_id');
-    // }
-    // public function likes()
-    // {
-    //     return $this->belongsToMany('App\Like','likes');
-    // }
+
 
     public function bookmark_tweets()
     {
         return $this->belongsToMany('App\Tweet','bookmark_tweet')->withTimestamps();
     }
 
-    // public function like(){
-    //     return $this->hasMany('App\Like','likes','user_id','id');
-    //   }
-  
-    //   public function userLikes(){
-    //     return $this->belongsToMany('App\Tweet', 'likes','user_id','tweet_id');
-    //   }
-  
-    //   public function isLiking(Tweet $tweet)
-    //   {
-    //       return !is_null($this->userLikes()->where('user_id', $tweet->user_id)->first());
-    //   }
+
     public function likes()
     {
         return $this->hasMany('App\Like');
     }
 
-    // public function retweets()
-    // {
-    //     return $this->hasMany('App\Retweet');
-    // }
 
-
-    // public function retweets()
-    // {
-    //     return $this->hasMany(Retweet::class ,'source_tweet_id');
-    // }
 
     public function retweedTweets()
     {
