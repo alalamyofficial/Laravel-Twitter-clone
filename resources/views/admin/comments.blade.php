@@ -6,13 +6,14 @@
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <h3>Comments Datatable <span class="badge bg-light-primary">Count : {{count($comments)}}</span></h3>
+            <h3>Comments Datatable <span class="badge bg-light-primary">Count : {{$comment_count}}</span></h3>
         </div>
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                 <div class="dataTable-top">
 
                 <table class="table table-striped dataTable-table" id="table1">
+                @if(count($comments) > 0)
                 <thead>
                     <tr>
                         <th data-sortable="" style="width: 29.0129%;">
@@ -62,6 +63,10 @@
                             
                     </tr>
                     @endforeach
+
+                    @else
+                    <p class="row"><center>No Comments Found</center></p>
+                    @endif
                 </tbody>
         </div>
     </div>

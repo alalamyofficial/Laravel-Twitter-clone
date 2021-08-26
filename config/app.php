@@ -178,6 +178,7 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         \Chatify\ChatifyServiceProvider::class,
         Shetabit\Visitor\Provider\VisitorServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
 
 
     ],
@@ -236,6 +237,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'Chatify' => Chatify\Facades\ChatifyMessenger::class,
         'Visitor' => Shetabit\Visitor\Facade\Visitor::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
 
     ],

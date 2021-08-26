@@ -14,7 +14,7 @@
         $queryString = http_build_query([
             'access_key' => '70967196e61a47461b0aa073cad2c2f7',
             'keywords' => 'Wall street -wolf', // the word "wolf" will be
-            'categories' => '-sport',
+            'categories' => '-entertainment',
             'sort' => 'popularity',
             "totalResults" => 2,
 

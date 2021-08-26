@@ -17,6 +17,8 @@ class HashtagController extends Controller
 
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
 
+        $hashtag_count = Hashtag::withCount('tweets')->count();
+
         $tweets = $hashtag->tweets()->latest()->paginate(10);
 
         $tweetsHashtags = Hashtag::withCount('tweets')->get();
@@ -29,7 +31,8 @@ class HashtagController extends Controller
             'tweets'=> $tweets,
             'retweetCount' => $retweetCount,
             'hashtags' => $hashtags,
-            'tweetsHashtags'=> $tweetsHashtags
+            'tweetsHashtags'=> $tweetsHashtags,
+            'hashtag_count' => $hashtag_count 
         ]);
         // return redirect()->back();
     }
@@ -51,11 +54,14 @@ class HashtagController extends Controller
 
         $retweetCount = auth()->user()->tweets()->where('id','==','original_tweet')->count();
 
+        $hashtag_count = Hashtag::withCount('tweets')->count();
+
+
         visitor()->visit();
 
 
         return view('profiles.trends',
-            compact('hashtags','retweetCount','tweetsHashtags')
+            compact('hashtags','retweetCount','tweetsHashtags','hashtag_count')
         );
 
     }

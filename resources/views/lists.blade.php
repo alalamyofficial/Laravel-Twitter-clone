@@ -30,7 +30,7 @@
         <form action="{{route('list.delete',$task->id)}}" method="post" style="margin-left: 570px;">
           @csrf
           @method('delete')
-            <a class="btn btn-success" style="" href="" data-toggle="modal" data-target="#exampleModal">
+            <a class="btn btn-success" style="" href="{{route('list.edit',$task->id)}}">
             
               <i class="bi bi-pencil-square">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

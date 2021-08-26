@@ -168,9 +168,11 @@ class TweetController extends Controller
      * @param  \App\Tweet  $tweet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tweet $tweet)
+    public function edit(Tweet $tweet,$id)
     {
-        //
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+        $tweet = Tweet::findOrFail($id);
+        return view('edit_tweet',compact('tweet','hashtags'));
     }
 
     /**
@@ -180,9 +182,79 @@ class TweetController extends Controller
      * @param  \App\Tweet  $tweet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tweet $tweet)
+    public function update(Request $request, Tweet $tweet, $id)
     {
-        //
+        $this->validate($request,
+            
+        [
+            'body'=>'sometimes',
+            'image'=>'sometimes',
+        ]
+    
+    );
+
+    $tweet = Tweet::findOrFail($id);
+
+    $hashtags = $this->extractHashtags($request->input('body'));
+
+    
+    if ($request->hasFile('image')) {
+        
+        $img_file = $request->image;
+
+        $new_image = time().$img_file->getClientOriginalName();
+
+        $img_file->move('public/storage/imgs/',$new_image);
+
+        $tweet->image = 'public/storage/imgs/'.$new_image;
+
+        $update_tweet = [
+
+            'user_id' => auth()->id(),
+    
+            'body' => $request->body
+
+        ];
+
+        $tweet->update($update_tweet);
+
+        $tweet->save();
+
+
+        foreach ($hashtags as $singleHashtag){
+            $hashtag = Hashtag::firstOrCreate(['slug' => $singleHashtag]);
+            $tweet->hashtags()->attach($hashtag);
+        }
+
+        return redirect()->route('home');
+
+    }
+    else
+    {
+        $update_tweet = [
+
+            'user_id' => auth()->id(),
+    
+            'body' => $request->body
+
+        ];
+
+        $tweet->update($update_tweet);
+
+        $tweet->save();
+
+
+        foreach ($hashtags as $singleHashtag){
+            $hashtag = Hashtag::firstOrCreate(
+                ['slug' => $singleHashtag]
+            );
+            $tweet->hashtags()->attach($hashtag);
+        }
+
+        return redirect()->route('home');
+
+    }    
+
     }
 
     /**

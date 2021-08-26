@@ -6,7 +6,7 @@
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <h3>Users Datatable <span class="badge bg-light-primary">Count : {{count($users)}}</span></h3>
+            <h3>Users Datatable <span class="badge bg-light-primary">Count : {{$users_count}}</span></h3>
         </div>
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -40,9 +40,12 @@
                             <a href="#" class="dataTable-sorter">Email</a>
                         </th>
                         <th data-sortable="" style="width: 17.0129%;">
-                            <a href="#" class="dataTable-sorter">Join</a>
+                            <a href="#" class="dataTable-sorter">Verifiy</a>
                         </th>
                         <th data-sortable="" style="width: 17.0129%;">
+                            <a href="#" class="dataTable-sorter">Join</a>
+                        </th>
+                        <th data-sortable="" style="width: 27.0129%;">
                             <a href="#" class="dataTable-sorter">Action</a>
                         </th>
                     </tr>
@@ -81,17 +84,25 @@
                         <td>{{$user->bio}}</td>       
                         <td>{{$user->country}}</td>       
                         <td>{{$user->email}}</td>       
-
-
+                        <td>
+                            @if($user->verified == 1)
+                                <b>Yes</b>
+                            @else
+                                <b>No</b>
+                            @endif 
+                        </td>
                         <td>{{$user->created_at->diffForHumans()}}</td>
 
                         <td>
                             <form action="{{route('admin.user.destroy',$user->id)}}" method="post">
                             @csrf
                             @method('delete')
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="fas fa-times-circle"></i>
-                                </buttons>
+                                <div class="d-flex">
+                                    <a href="{{route('admin.user.edit',$user->id)}}" style="margin-right:10px"><i class="fa fa-user-edit fa-1x"></i></a>
+                                    <button class="btn btn-sm btn-danger">
+                                        <i class="fas fa-times-circle "></i>
+                                    </button>
+                                </div>
                             </form>
                         </td>
                             

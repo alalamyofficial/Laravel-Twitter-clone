@@ -5,8 +5,9 @@
 
 <section class="section">
     <div class="card">
+        @if(count($likes) > 0)
         <div class="card-header">
-            <h3>Tweets Likes Datatable  <span class="badge bg-light-primary">Count : {{count($likes)}}</span></h3>
+            <h3>Tweets Likes Datatable  <span class="badge bg-light-primary">Count : {{$like_count}}</span></h3>
         </div>
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -56,9 +57,13 @@
                         </td>
                             
                     </tr>
+                    
                     @endforeach
                 </tbody>
         </div>
+        @else
+        <p class="row"><center>No Likes Found</center></p>
+        @endif
     </div>
 </section>
 

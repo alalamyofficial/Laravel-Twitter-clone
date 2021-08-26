@@ -5,8 +5,9 @@
 
 <section class="section">
     <div class="card">
+    @if(count($tweets) > 0)
         <div class="card-header">
-            <h3>Tweets Datatable <span class="badge bg-light-primary">Count : {{count($tweets)}}</span></h3>
+            <h3>Tweets Datatable <span class="badge bg-light-primary">Count : {{$tweet_count}}</span></h3>
         </div>
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -105,6 +106,10 @@
                     @endforeach
                 </tbody>
         </div>
+    @else
+        <p class="row">No Tweets Found</p>
+    @endif    
+
     </div>
 </section>
 

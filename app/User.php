@@ -23,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','username','cover','avatar','bio','country'
+        'name', 'email', 'password','username','cover','avatar','bio','country','verified','role_as'
     ];
 
     /**
@@ -211,5 +211,10 @@ class User extends Authenticatable
     public function retweeted_tweets()
     {
         return $this->belongsToMany('App\Retweet','retweets')->withTimestamps();
+    }
+
+    public function verifiy()
+    {
+        return $this->hasMany(BlueVerifiy::class);
     }
 }

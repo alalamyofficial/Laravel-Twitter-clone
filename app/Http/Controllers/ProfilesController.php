@@ -161,10 +161,6 @@ class ProfilesController extends Controller
 
     }
 
-    public function replies_tweets(){
-
-
-    }
 
     public function group_tweets(User $user){
         

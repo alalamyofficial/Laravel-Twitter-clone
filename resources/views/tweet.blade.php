@@ -67,11 +67,13 @@
                         @can('tweet_action',$tweet->user)
 
 
-                        <a class="dropdown-item" href="#">
-                            <div class="flex">
-                                <i class="fas fa-edit" style="color:#b7b7b3"></i> 
-                                <p class="ml-2" style="color:#b7b7b3">Edit</p>
-                            </div>
+                        <a class="dropdown-item">
+                            <form action="{{route('tweet.edit',$tweet->id)}}" method="get">
+                                    <div class="flex">
+                                        <i class="fas fa-edit" style="color:#b7b7b3"></i> 
+                                        <button type="submit" class="ml-2" style="color:#b7b7b3">Edit</button>
+                                    </div>
+                            </form>
                         </a>
 
                         @endcan

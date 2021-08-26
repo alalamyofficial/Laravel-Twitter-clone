@@ -4,7 +4,7 @@
         <a class="font-bold text-lg mb-4 block" href="{{route('home')}}"><i class="fas fa-home mr-3"></i> Home</a>
     </li>
 
-    <li class="links {{ request()->is('explore.show') ? 'active' : '' }}">
+    <li class="links {{ request()->is('explore') ? 'active' : '' }}">
         <a class="font-bold text-lg mb-4 block" href="{{route('explore.show')}}"><i class="fas fa-hashtag mr-3"></i> Explore</a>
     </li>
 
@@ -46,9 +46,10 @@
 
         <li class="links">
         
-            <a class="font-bold text-lg mb-4 block" href="#">
+            <a class="font-bold text-lg mb-4 block" href="{{route('blue.verifiy')}}">
                 <i class="fas fa-chevron-circle-down mr-3"></i>
-                More</a>
+                More
+            </a>
 
         </li>
 

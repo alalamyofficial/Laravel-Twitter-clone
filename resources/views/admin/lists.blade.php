@@ -5,8 +5,9 @@
 
 <section class="section">
     <div class="card">
+    @if(count($lists) > 0)
         <div class="card-header">
-            <h3>Tasks Datatable <span class="badge bg-light-primary">Count : {{count($lists)}}</span></h3>
+            <h3>Tasks Datatable <span class="badge bg-light-primary">Count : {{$list_count}}</span></h3>
         </div>
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -46,6 +47,9 @@
                     @endforeach
                 </tbody>
         </div>
+        @else
+            <p class="row"><center>No Lists Found</center></p>
+        @endif    
     </div>
 </section>
 

@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68d8bc85453e7928f24d62d7ee5d8483",
+    "content-hash": "d196cfd14c54e3cfba9151bb0c729fd0",
     "packages": [
+        {
+            "name": "arielmejiadev/larapex-charts",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArielMejiaDev/larapex-charts.git",
+                "reference": "821f9a99c47e51f7306d04c2eeb7c6c3ee9f1e1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArielMejiaDev/larapex-charts/zipball/821f9a99c47e51f7306d04c2eeb7c6c3ee9f1e1b",
+                "reference": "821f9a99c47e51f7306d04c2eeb7c6c3ee9f1e1b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ArielMejiaDev\\LarapexCharts\\LarapexChartsServiceProvider"
+                    ],
+                    "aliases": {
+                        "LarapexChart": "ArielMejiaDev\\LarapexCharts\\Facades\\LarapexChart"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ArielMejiaDev\\LarapexCharts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArielMejiaDev",
+                    "email": "arielmejiadev@gmail.com"
+                }
+            ],
+            "description": "Package to provide easy api to build apex charts on Laravel",
+            "support": {
+                "issues": "https://github.com/ArielMejiaDev/larapex-charts/issues",
+                "source": "https://github.com/ArielMejiaDev/larapex-charts/tree/2.1.1"
+            },
+            "time": "2021-06-24T16:16:54+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "1.3.0",
@@ -61,6 +114,52 @@
                 "source": "https://github.com/asm89/stack-cors/tree/1.3.0"
             },
             "time": "2019-12-24T22:41:47+00:00"
+        },
+        {
+            "name": "balping/json-raw-encoder",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/balping/json-raw-encoder.git",
+                "reference": "e2b0ab888342b0716f1f0628e2fa13b345c5f276"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/balping%2Fjson-raw-encoder/repository/archive.zip?sha=e2b0ab888342b0716f1f0628e2fa13b345c5f276",
+                "reference": "e2b0ab888342b0716f1f0628e2fa13b345c5f276",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Balping\\JsonRaw\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Balázs Dura-Kovács"
+                }
+            ],
+            "description": "Encode arrays to json with raw JS objects (eg. callbacks) in them",
+            "keywords": [
+                "callback",
+                "encode",
+                "json"
+            ],
+            "support": {
+                "issues": "https://gitlab.com/api/v4/projects/6731265/issues"
+            },
+            "time": "2020-06-06T16:24:31+00:00"
         },
         {
             "name": "brick/math",
@@ -197,6 +296,66 @@
                 }
             ],
             "time": "2021-06-07T13:58:28+00:00"
+        },
+        {
+            "name": "consoletvs/charts",
+            "version": "6.5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ConsoleTVs/Charts.git",
+                "reference": "0005d14e4fe6715f4146a4dc3b56add768233001"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/0005d14e4fe6715f4146a4dc3b56add768233001",
+                "reference": "0005d14e4fe6715f4146a4dc3b56add768233001",
+                "shasum": ""
+            },
+            "require": {
+                "balping/json-raw-encoder": "^1.0",
+                "illuminate/console": "^5.0|^6.0|^7.0|^8.0",
+                "illuminate/support": "^5.0|^6.0|^7.0|^8.0",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ConsoleTVs\\Charts\\ChartsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ConsoleTVs\\Charts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Èrik Campobadal Forés",
+                    "email": "soc@erik.cat"
+                }
+            ],
+            "description": "The laravel charting package",
+            "support": {
+                "issues": "https://github.com/ConsoleTVs/Charts/issues",
+                "source": "https://github.com/ConsoleTVs/Charts/tree/6.5.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ConsoleTVs",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/ErikCampobadal",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-09-10T14:20:26+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -1013,6 +1172,80 @@
                 }
             ],
             "time": "2020-06-13T08:05:20+00:00"
+        },
+        {
+            "name": "khill/lavacharts",
+            "version": "3.1.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kevinkhill/lavacharts.git",
+                "reference": "58a2ee714a7029f7b2fb4bf8d474f3c2ec9005e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kevinkhill/lavacharts/zipball/58a2ee714a7029f7b2fb4bf8d474f3c2ec9005e1",
+                "reference": "58a2ee714a7029f7b2fb4bf8d474f3c2ec9005e1",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": ">=1.14 <3.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "~0.3",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.8",
+                "satooshi/php-coveralls": "~1.0",
+                "squizlabs/php_codesniffer": "~2.5"
+            },
+            "suggest": {
+                "khill/datatableplus": "Adds extra features to DataTables such as csv and laravel collection parsing."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Khill\\Lavacharts\\Laravel\\LavachartsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Lava": "Khill\\Lavacharts\\Laravel\\LavachartsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Khill\\Lavacharts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Hill",
+                    "email": "kevinkhill@gmail.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "PHP wrapper library for the Google Chart API",
+            "homepage": "http://lavacharts.com",
+            "keywords": [
+                "charts",
+                "google",
+                "graphs",
+                "laravel",
+                "symfony"
+            ],
+            "support": {
+                "docs": "http://lavacharts.com",
+                "email": "kevinkhill@gmail.com",
+                "forum": "https://gitter.im/kevinkhill/lavacharts",
+                "issues": "https://github.com/kevinkhill/lavacharts/issues",
+                "source": "https://github.com/kevinkhill/lavacharts",
+                "wiki": "https://github.com/kevinkhill/lavacharts/wiki"
+            },
+            "time": "2020-11-23T12:29:57+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2178,7 +2411,7 @@
         },
         {
             "name": "php-flasher/flasher",
-            "version": "v0.4.10",
+            "version": "v0.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-flasher/flasher.git",
@@ -2241,7 +2474,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-flasher/flasher/issues",
-                "source": "https://github.com/php-flasher/flasher/tree/v0.4.10"
+                "source": "https://github.com/php-flasher/flasher/tree/v0.4.11"
             },
             "funding": [
                 {
@@ -2265,22 +2498,22 @@
         },
         {
             "name": "php-flasher/flasher-laravel",
-            "version": "v0.4.10",
+            "version": "v0.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-flasher/flasher-laravel.git",
-                "reference": "ed05a4dbb16b5140ac72f0f6c8009f86e9c65eda"
+                "reference": "76f2f8170efc294f3561dab26667cb5103b20a94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-flasher/flasher-laravel/zipball/ed05a4dbb16b5140ac72f0f6c8009f86e9c65eda",
-                "reference": "ed05a4dbb16b5140ac72f0f6c8009f86e9c65eda",
+                "url": "https://api.github.com/repos/php-flasher/flasher-laravel/zipball/76f2f8170efc294f3561dab26667cb5103b20a94",
+                "reference": "76f2f8170efc294f3561dab26667cb5103b20a94",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "^4.0|^5.0|^6.0|^7.0|^8.0",
                 "php": ">=5.3",
-                "php-flasher/flasher": "^0.4"
+                "php-flasher/flasher": "^0.4.11"
             },
             "require-dev": {
                 "orchestra/testbench": "^2.0|^3.0|^4.0|^5.0|^6.0",
@@ -2340,7 +2573,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-flasher/flasher-laravel/issues",
-                "source": "https://github.com/php-flasher/flasher-laravel/tree/v0.4.10"
+                "source": "https://github.com/php-flasher/flasher-laravel/tree/v0.4.11"
             },
             "funding": [
                 {
@@ -2360,25 +2593,25 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-08-22T00:27:46+00:00"
+            "time": "2021-08-22T22:17:53+00:00"
         },
         {
             "name": "php-flasher/flasher-noty",
-            "version": "v0.4.10",
+            "version": "v0.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-flasher/flasher-noty.git",
-                "reference": "9cfb25cf942aad766d347ede62f0addef5fa6c7e"
+                "reference": "59e949e794a7c5fc73be5db1da75cc244badad61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-flasher/flasher-noty/zipball/9cfb25cf942aad766d347ede62f0addef5fa6c7e",
-                "reference": "9cfb25cf942aad766d347ede62f0addef5fa6c7e",
+                "url": "https://api.github.com/repos/php-flasher/flasher-noty/zipball/59e949e794a7c5fc73be5db1da75cc244badad61",
+                "reference": "59e949e794a7c5fc73be5db1da75cc244badad61",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3",
-                "php-flasher/flasher": "^0.4"
+                "php-flasher/flasher": "^0.4.11"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8|^5.0|^6.0|^7.0|^8.0|^9.0"
@@ -2420,7 +2653,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-flasher/flasher-noty/issues",
-                "source": "https://github.com/php-flasher/flasher-noty/tree/v0.4.10"
+                "source": "https://github.com/php-flasher/flasher-noty/tree/v0.4.11"
             },
             "funding": [
                 {
@@ -2440,26 +2673,26 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-05-09T14:33:43+00:00"
+            "time": "2021-08-22T22:17:53+00:00"
         },
         {
             "name": "php-flasher/flasher-noty-laravel",
-            "version": "v0.4.10",
+            "version": "v0.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-flasher/flasher-noty-laravel.git",
-                "reference": "28a8bd5f438e9ccc616e22fa188fe87f33cac155"
+                "reference": "d1aa15af2795889fa2e59d3457c9a74961f48361"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-flasher/flasher-noty-laravel/zipball/28a8bd5f438e9ccc616e22fa188fe87f33cac155",
-                "reference": "28a8bd5f438e9ccc616e22fa188fe87f33cac155",
+                "url": "https://api.github.com/repos/php-flasher/flasher-noty-laravel/zipball/d1aa15af2795889fa2e59d3457c9a74961f48361",
+                "reference": "d1aa15af2795889fa2e59d3457c9a74961f48361",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3",
-                "php-flasher/flasher-laravel": "^0.4",
-                "php-flasher/flasher-noty": "^0.4"
+                "php-flasher/flasher-laravel": "^0.4.11",
+                "php-flasher/flasher-noty": "^0.4.11"
             },
             "require-dev": {
                 "orchestra/testbench": "^2.0|^3.0|^4.0|^5.0|^6.0",
@@ -2518,7 +2751,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-flasher/flasher-noty-laravel/issues",
-                "source": "https://github.com/php-flasher/flasher-noty-laravel/tree/v0.4.10"
+                "source": "https://github.com/php-flasher/flasher-noty-laravel/tree/v0.4.11"
             },
             "funding": [
                 {
@@ -2538,7 +2771,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-05-09T17:01:02+00:00"
+            "time": "2021-08-22T22:17:53+00:00"
         },
         {
             "name": "phpoption/phpoption",

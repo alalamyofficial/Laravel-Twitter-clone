@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Tooty</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -34,34 +34,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-    <style>
-    
-    /* li a .active {
-        background-color: yellow;
-    } */
-
-    /* .currentLink {
-        color: #640200;
-        background-color: #000000;
-    } */
-
-    /* a:active,
-        a:focus {
-            text-decoration: none;
-            color: #009ce7;
-            outline: none;
-    } */
-
-
-    /* .links:active {
-        background-color: red;
-        color: white;
-    } */
-
-    
-    </style>
-
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -72,9 +44,16 @@
             
             <header class="container mx-auto mt-6">
 
-                <h1>
+                <!-- <h1>
                     <img src="{{asset('tweet.png')}}" alt="" width="60px"> 
-                </h1>
+                </h1> -->
+                    <a href="/tweets">
+                <div class="d-flex">
+                        <img src="{{asset('tooty.png')}}" class="mr-2" 
+                        style="width:50px; height:60px; margin-right: 3px;" alt="">
+                        <h3 class="mt-4">Tooty</h3>
+                </div>
+                    </a>
 
             </header>
 

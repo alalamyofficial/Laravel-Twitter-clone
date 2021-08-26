@@ -27,7 +27,7 @@ class ListsController extends Controller
      */
     public function create()
     {
-        $tasks = Lists::latest()->paginate(10);
+        $tasks = Lists::where('user_id','=',Auth::user()->id)->latest()->paginate(10);
         $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
 
         visitor()->visit();
@@ -77,9 +77,12 @@ class ListsController extends Controller
      * @param  \App\Lists  $lists
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lists $lists)
+    public function edit(Lists $lists,$id)
     {
-        //
+        $hashtags = Hashtag::withCount('tweets')->limit(3)->latest()->get();
+        $task = Lists::findOrFail($id);
+        return view('edit_lists',compact('hashtags','task'));
+
     }
 
     /**
@@ -89,9 +92,28 @@ class ListsController extends Controller
      * @param  \App\Lists  $lists
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lists $lists)
+    public function update(Request $request, Lists $lists, $id)
     {
-        //
+        $this->validate($request,[
+
+            'task' => 'required'
+
+        ]);
+
+        $task = Lists::findOrFail($id);
+        
+        $update_list = [
+
+            'task' => $request->task
+
+        ];
+
+        $task->update($update_list);
+
+
+        return redirect()->route('list');
+
+
     }
 
     /**

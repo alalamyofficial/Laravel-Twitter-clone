@@ -1,10 +1,7 @@
-<!-- W3hubs.com - Download Free Responsive Website Layout Templates designed on HTML5 
-  CSS3,Bootstrap,Tailwind CSS,Shoelace Style which are 100% Mobile friendly. w3Hubs all Layouts are responsive 
-  cross browser supported, best quality world class designs. -->
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Twitter Login Page In Bootstrap 5</title>
+    <title>Twitter Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -82,8 +79,9 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6 p-0 pt-3">
-          <i class="fa fa-twitter"></i>
-          <h3 class="text-center pt-3">Log in to Twitter</h3>
+          <!-- <i class="fa fa-twitter"></i> -->
+          <img src="tooty.png" alt="" width="60px" style="margin-left:300px">
+          <h3 class="text-center pt-3">Log in to Tooty</h3>
           <form class="login-form" method="POST" action="{{ route('login') }}">
           @csrf
             <div class="mb-3 bg-color">

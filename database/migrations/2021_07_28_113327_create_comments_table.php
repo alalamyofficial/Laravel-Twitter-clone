@@ -15,10 +15,16 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('tweet_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('tweet_id');
             $table->text('comment');
             $table->timestamps();
+
+            $table->foreign("user_id")->references('id')
+            ->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->foreign("tweet_id")->references('id')
+            ->on('tweets')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

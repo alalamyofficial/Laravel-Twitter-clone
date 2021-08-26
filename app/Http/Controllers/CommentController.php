@@ -58,10 +58,6 @@ class CommentController extends Controller
             'user_id'   => $request->user_id,
             'tweet_id'   => $request->tweet_id
         ]);
-
-        // $comment->user_id = Auth::id();
-        // $comment->tweet_id = $request->tweet_id;
-        // $comment->comment = $request->comment;
         
         $users = User::all();
         $comment_status = 'New Comment';
@@ -176,7 +172,6 @@ class CommentController extends Controller
 
     public function markAsRead()
     {
-        // $users = User::user()->get();
 
         Auth::user()->notifications->markAsRead();
         return response()->json('success');
