@@ -12,10 +12,12 @@ use App\Comment;
 use App\Tweet;
 use App\Like;
 use Auth;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
+
 
 class User extends Authenticatable
 {
-    use Notifiable , Followable , HasLikes;
+    use Notifiable , Followable , Filterable;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +27,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','username','cover','avatar','bio','country','verified','role_as'
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.

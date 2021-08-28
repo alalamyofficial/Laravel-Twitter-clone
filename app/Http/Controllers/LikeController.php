@@ -8,7 +8,8 @@ use App\User;
 use App\Tweet;
 use App\Hashtag;
 use Shetabit\Visitor\Traits\Visitor;
-
+use App\Notifications\LikeNotifications;
+use Auth;
 
 class LikeController extends Controller
 {
@@ -38,9 +39,23 @@ class LikeController extends Controller
             return response(null, 409);
         }
 
+        
         $tweet->likes()->create([
             'user_id' => $request->user()->id,
         ]);
+        // // $like_id = $like->id;
+        // $tweet = Tweet::find($request->tweet_id);
+        
+        // //variables for notifications
+        // $users = User::all();
+        // $like_status = 'New Like';
+            
+            
+        // foreach($users as $user){
+        //     if($user->id !== Auth::user()->id){
+        //         $user->notify(new LikeNotifications(Auth::user() ,$like_status));
+        //     }
+        // }
 
 
         return back();

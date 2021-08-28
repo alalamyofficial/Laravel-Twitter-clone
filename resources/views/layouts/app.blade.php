@@ -40,21 +40,16 @@
 <body>
     <div id="app">
     <section>
-        <section class="px-4 mb-4">
+        <section style="width: 125px; margin-left: 102px;" class="px-4 mb-4">
             
             <header class="container mx-auto mt-6">
-
-                <!-- <h1>
-                    <img src="{{asset('tweet.png')}}" alt="" width="60px"> 
-                </h1> -->
-                    <a href="/tweets">
-                <div class="d-flex">
-                        <img src="{{asset('tooty.png')}}" class="mr-2" 
-                        style="width:50px; height:60px; margin-right: 3px;" alt="">
-                        <h3 class="mt-4">Tooty</h3>
-                </div>
+                    <a href="/tweets" style="text-decoration: none;">
+                        <div class="d-flex">
+                                <img src="{{asset('tooty.png')}}" class="mr-2" 
+                                style="width:50px; height:60px; margin-right: 3px;" alt="">
+                                <h3 class="mt-4">Tooty</h3>
+                        </div>
                     </a>
-
             </header>
 
         </section>
@@ -103,10 +98,7 @@
 
     </div>
 
-    <script src="http://unpkg.com/turbolinks"></script>
-
-     <script src="{{asset('js/like.js')}}"></script>   
-     <script src="{{asset('js/upload.js')}}"></script>   
+     <script src="http://unpkg.com/turbolinks"></script>
      <script src="{{asset('js/fgEmojiPicker.js')}}"></script>   
      <script src="{{asset('js/emojionearea.min.js')}}"></script>   
      <script src="{{asset('js/emojionearea.js')}}"></script>

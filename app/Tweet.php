@@ -10,7 +10,6 @@ use App\Retweet;
 class Tweet extends Model 
 {
 
-    use HasLikes;
 
 
     protected $fillable = ['user_id','body','image','likeable_id','retweet'];

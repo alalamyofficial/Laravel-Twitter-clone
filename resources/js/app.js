@@ -15,6 +15,10 @@ Vue.filter("timeformat", function(arg) {
     return moment(arg).format("MMM Do YY");
 });
 
+import InstantSearch from 'vue-instantsearch';
+
+Vue.use(InstantSearch);
+
 // import Turbolinks from "turbolinks";
 // Turbolinks.start();
 
@@ -54,12 +58,17 @@ Vue.component(
     "example-component",
     require("./components/ExampleComponent.vue").default
 );
-Vue.component("tweet", require("./components/Tweet.vue").default);
-Vue.component("addcommemt", require("./components/AddComment.vue").default);
-Vue.component("getcommemt", require("./components/GetComment.vue").default);
+// Vue.component("tweet", require("./components/Tweet.vue").default);
+// Vue.component("addcommemt", require("./components/AddComment.vue").default);
+// Vue.component("getcommemt", require("./components/GetComment.vue").default);
 Vue.component(
     "notifications",
     require("./components/Notifications.vue").default
+);
+
+Vue.component(
+    "instant-search",
+    require("./components/InstantSearch.vue").default
 );
 
 /**

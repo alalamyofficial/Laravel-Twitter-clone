@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 
 Route::get('/', function () {
@@ -93,6 +94,10 @@ Route::group(['middleware' => 'auth'], function () {
     //blue verifiy
     Route::get('blue/verifiy','BlueVerifiyController@index')->name('blue.verifiy');
     Route::post('blue/verifiy/store','BlueVerifiyController@store')->name('verifiy.store');
+
+    //Search Controller | Search User
+    Route::get('/search', 'SearchController@search')->name('search');
+
 });
 
 //admin

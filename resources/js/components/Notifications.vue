@@ -55,10 +55,10 @@
                 :key="index"
                 @click="showNotifications()"
                 ><hr />
-                <h5>{{ unread.data.comment_status }}</h5>
+                <!-- <h5>{{ unread.data.comment_status }}</h5> -->
                 <!-- <p>{{ unread.data.post_title }}</p> -->
                 <b>{{ unread.data.user_name }}</b> write a comment
-                <p>{{ unread.data.comment }}</p>
+                <!-- <p>{{ unread.data.comment }}</p> -->
                 <!-- <p>{{ moment(unread.created_at).fromNow() }}</p> -->
             </a>
             <a class="dropdown-item" v-show="unreadnotifications.length == 0"
